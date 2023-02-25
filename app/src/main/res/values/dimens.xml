@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="paddingSize">17dp</dimen>
+    <dimen name="textSize">22sp</dimen>
+    <dimen name="iconPadding">19dp</dimen>
+    <dimen name="textSizeSettings">16sp</dimen>
+    <dimen name="layout_padding_horizontal">16dp</dimen>
+    <dimen name="corener_Radius_Main">17dp</dimen>
+    <dimen name="padding_Setting">20dp</dimen>
+</resources>
