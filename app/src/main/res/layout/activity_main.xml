@@ -18,7 +18,7 @@
         android:textColor="@color/white"
         android:fontFamily="@font/ys_display_medium"
         android:textFontWeight="500"
-        android:textSize="22sp"
+        android:textSize="@dimen/button_text_size"
         android:layout_gravity="start"
         tools:targetApi="p" />
 
