@@ -1,8 +1,20 @@
 <resources>
     <string name="app_name">Playlist Maker</string>
-    <string name="app_search" translatable="false">Поиск</string>
-    <string name="app_media" translatable="false">Медиатека</string>
-    <string name="app_settings" translatable="false">Настройки</string>
-    <string name="app_blackTopic" translatable="false">Темная тема</string>
-    <string name="app_shareSettings" translatable="false">Поделиться приложением</string>
+    <string name="title_search">Поиск</string>
+    <string name="title_mediateca">Медиатека</string>
+    <string name="title_settings">Настройки</string>
+    <string name="dark_theme">Темная тема</string>
+    <string name="share_app">Поделиться приложением</string>
+    <string name="write_to_support">Написать в поддержку</string>
+    <string name="terms_of_use">Пользовательское соглашение</string>
+    <string name="link_to_yandexPracticum">https://practicum.yandex.ru/android-developer/</string>
+    <string name="email_address">morozov.savely2015@gmail.com</string>
+    <string name="subject_1">Сообщение разработчикам и разработчицам приложения Playlist Maker</string>
+    <string name="subject_2">Спасибо разработчикам и разработчицам за крутое приложение!</string>
+    <string name="user_agriment">https://yandex.ru/legal/practicum_offer/</string>
+    <string name="input_hint">Поиск</string>
+    <string name="no_connection">Проблемы со связью\n\nЗагрузка не удалась. Проверьте подключение к интернету</string>
+    <string name="nothing_found">Ничего не нашлось</string>
+    <string name="refresh">Обновить</string>
+    <string name="you_searched">Вы искали</string>
 </resources>

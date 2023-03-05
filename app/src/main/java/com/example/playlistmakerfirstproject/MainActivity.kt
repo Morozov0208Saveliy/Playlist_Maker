@@ -3,31 +3,28 @@ package com.example.playlistmakerfirstproject
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
-import android.widget.Toast
-import androidx.dynamicanimation.animation.DynamicAnimation.ViewProperty
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val searchButton = findViewById<Button>(R.id.searchId)
-        val mediaButton = findViewById<Button>(R.id.mediaId)
-        val settingButton = findViewById<Button>(R.id.settingsId)
+        val searchButton = findViewById<Button>(R.id.search_button)
+        val mediatecaButton = findViewById<Button>(R.id.mediateca_button)
+        val settingButton = findViewById<Button>(R.id.settings_button)
 
-        searchButton.setOnClickListener {
-            val searchIntent = Intent(this, SearchActivity::class.java)
-            startActivity(searchIntent)
+        searchButton.setOnClickListener{
+            val displayIntent = Intent(this, SearchActivity::class.java)
+            startActivity(displayIntent)
         }
-        mediaButton.setOnClickListener {
-            val mediaIntent = Intent(this,LibraryActivity::class.java )
-            startActivity(mediaIntent)
+        mediatecaButton.setOnClickListener{
+            val displayIntent = Intent(this, LibraryActivity::class.java)
+            startActivity(displayIntent)
         }
-        settingButton.setOnClickListener {
-            val settingIntent = Intent(this,SettingActivity::class.java)
-            startActivity(settingIntent)
+        settingButton.setOnClickListener{
+            val displayIntent = Intent(this, SettingsActivity::class.java)
+            startActivity(displayIntent)
         }
     }
 }

@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="paddingSize">17dp</dimen>
-    <dimen name="textSize">22sp</dimen>
-    <dimen name="iconPadding">19dp</dimen>
-    <dimen name="textSizeSettings">16sp</dimen>
-    <dimen name="layout_padding_horizontal">16dp</dimen>
-    <dimen name="corener_Radius_Main">17dp</dimen>
-    <dimen name="padding_Setting">20dp</dimen>
+    <dimen name="button_corner_radius">16dp</dimen>
+    <dimen name="button_margin_top">16dp</dimen>
+    <dimen name="button_text_size">22sp</dimen>
+    <dimen name="button_icon_padding">16dp</dimen>
+    <dimen name="framelayout_margin_bottom">16dp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="padding_top_10">10dp</dimen>
+    <dimen name="padding_top_12">12dp</dimen>
+    <dimen name="padding_start_16">16dp</dimen>
+    <dimen name="padding_end_21">21dp</dimen>
+    <dimen name="margin_top_22">22dp</dimen>
+    <dimen name="layout_16">16dp</dimen>
+    <dimen name="layout_20">20dp</dimen>
+    <dimen name="radius_image_track">2dp</dimen>
+
+
 </resources>
