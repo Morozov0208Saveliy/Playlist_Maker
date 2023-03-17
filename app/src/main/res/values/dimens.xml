@@ -11,6 +11,4 @@
     <dimen name="padding_text_view">5dp</dimen>
     <dimen name="text_size_track_attribute">11sp</dimen>
     <dimen name="margin_top_bottom">14dp</dimen>
-    <dimen name="layout_wrap_content">wrap_content</dimen>
-    <dimen name="layout_match_parent">match_parent</dimen>
 </resources>
