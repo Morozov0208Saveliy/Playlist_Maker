@@ -23,34 +23,27 @@ class SearchActivity : AppCompatActivity() {
         inputSaveText = inputEditText.text.toString()
         val clearButton = findViewById<Button>(R.id.exit)
         val reternItemImageView = findViewById<ImageView>(R.id.return_n)
-
         reternItemImageView.setOnClickListener {
             finish()
         }
-
         clearButton.setOnClickListener {
             inputEditText.setText("")
             hideKeyboard(currentFocus ?: View(this))
         }
-
         val simpleTextWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 // empty
             }
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 clearButton.visibility = clearButtonVisibility(s)
                 inputSaveText = s.toString()
             }
-
             override fun afterTextChanged(s: Editable?) {
                 // empty
             }
-
         }
         inputEditText.addTextChangedListener(simpleTextWatcher)
     }
-
     private fun clearButtonVisibility(s: CharSequence?): Int {
         return if (s.isNullOrEmpty()) {
             View.GONE
@@ -58,23 +51,19 @@ class SearchActivity : AppCompatActivity() {
             View.VISIBLE
         }
     }
-
     companion object {
         const val PRODUCT_AMOUNT = "PRODUCT_AMOUNT"
     }
-
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString(PRODUCT_AMOUNT, inputSaveText)
     }
-
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         val inputEditText = findViewById<EditText>(R.id.search_content)
         val text = savedInstanceState.getString(PRODUCT_AMOUNT)
         if (!text.isNullOrEmpty()) {
             inputEditText.setText(text)
-
         }
     }
 }
