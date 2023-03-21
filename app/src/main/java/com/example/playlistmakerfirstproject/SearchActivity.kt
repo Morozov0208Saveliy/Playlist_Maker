@@ -61,9 +61,9 @@ class SearchActivity : AppCompatActivity() {
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         val inputEditText = findViewById<EditText>(R.id.search_content)
-        val text = savedInstanceState.getString(PRODUCT_AMOUNT)
-        if (!text.isNullOrEmpty()) {
-            inputEditText.setText(text)
+        inputSaveText = savedInstanceState.getString(PRODUCT_AMOUNT, "")
+        if (!inputSaveText.isNullOrEmpty()) {
+            inputEditText.setText(inputSaveText)
         }
     }
 }
