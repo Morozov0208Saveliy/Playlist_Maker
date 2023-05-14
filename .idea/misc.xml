@@ -10,8 +10,11 @@
         <entry key="app/src/main/res/layout/activity_1.xml" value="0.13209228515625002" />
         <entry key="app/src/main/res/layout/activity_2.xml" value="0.14322916666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14322916666666666" />
+        <entry key="app/src/main/res/drawable/ic_light_modi.xml" value="0.131" />
+        <entry key="app/src/main/res/drawable/ic_light_modi_2.xml" value="0.131" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.16111111111111112" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.14322916666666666" />
+        <entry key="app/src/main/res/layout/activity_view_recycler_element.xml" value="0.21937255859375002" />
       </map>
     </option>
   </component>
