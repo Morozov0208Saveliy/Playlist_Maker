@@ -71,10 +71,10 @@
     </FrameLayout>
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="@dimen/layout_marginTop_148dp"
         android:layout_gravity="center"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
+        android:layout_width="@dimen/layout_width_44dp"
+        android:layout_height="@dimen/layout_height_44dp"
         android:indeterminate="true"
         android:indeterminateTint="#3772E7"
         android:visibility="gone"/>
