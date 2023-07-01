@@ -13,4 +13,11 @@
     <dimen name="margin_top_bottom">14dp</dimen>
     <dimen name="corner_radius_2dp">2dp</dimen>
     <dimen name="corner_radius_54dp">54dp</dimen>
+    <dimen name="textSize_14sp">14sp</dimen>
+    <dimen name="textSize_13sp">13sp</dimen>
+    <dimen name="layout_marginEnd_16dp">16dp</dimen>
+    <dimen name="layout_marginStart_16dp">16dp</dimen>
+    <dimen name="layout_marginTop_148dp">148dp</dimen>
+    <dimen name="layout_width_44dp">44dp</dimen>
+    <dimen name="layout_height_44dp">44dp</dimen>
 </resources>
