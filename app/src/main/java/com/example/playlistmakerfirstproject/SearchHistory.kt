@@ -1,8 +1,7 @@
 package com.example.playlistmakerfirstproject
 
-import android.app.Application
 import android.content.SharedPreferences
-import androidx.recyclerview.widget.RecyclerView
+import com.example.playlistmakerfirstproject.audioplayer.domain.Track
 import com.google.gson.Gson
 
 class SearchHistory (sharedPreferences: SharedPreferences) {
