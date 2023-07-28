@@ -1,4 +1,4 @@
-package com.example.playlistmakerfirstproject
+package com.example.playlistmakerfirstproject.audioplayer.domain
 
 data class Track(
     val trackName: String,

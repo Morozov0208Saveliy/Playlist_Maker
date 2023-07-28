@@ -1,34 +1,30 @@
-package com.example.playlistmakerfirstproject
+package com.example.playlistmakerfirstproject.audioplayer.presentation.ui
 
-import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.animation.AnimationUtils
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.example.playlistmakerfirstproject.R
+import com.example.playlistmakerfirstproject.audioplayer.data.AudioPlayerRepositoryImpl
+import com.example.playlistmakerfirstproject.audioplayer.domain.MediaInteractorImpl
+import com.example.playlistmakerfirstproject.audioplayer.domain.Track
+import com.example.playlistmakerfirstproject.audioplayer.presentation.presenters.AudioPlayerPresenter
+import com.example.playlistmakerfirstproject.audioplayer.presentation.presenters.AudioPlayerView
+import com.example.playlistmakerfirstproject.audioplayer.presentation.presenters.TrackObject
 import com.google.gson.Gson
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AudioPlayerActivity : AppCompatActivity() {
+class AudioPlayerActivity : AppCompatActivity(), AudioPlayerView {
 
     companion object {
         const val TRACK_OBJECT = "track_object"
-        private const val STATE_DEFAULT = 0
-        private const val STATE_PREPARED = 1
-        private const val STATE_PLAYING = 2
-        private const val STATE_PAUSED = 3
-        private const val DELAY = 1000L
     }
 
-    private var mediaPlayer = MediaPlayer()
-    private var playerState = STATE_DEFAULT
-    private val handler = Handler(Looper.getMainLooper())
 
     private lateinit var coverImage: ImageView
     private lateinit var trackName: TextView
@@ -44,7 +40,7 @@ class AudioPlayerActivity : AppCompatActivity() {
     private lateinit var url: String
     private lateinit var returnItemImageView: androidx.appcompat.widget.Toolbar
     private lateinit var excerptDuration: TextView
-
+    private lateinit var presenter: AudioPlayerPresenter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,20 +48,24 @@ class AudioPlayerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_audioplayer)
 
         settingTrack()
-        preparePlayer()
         settingListeners()
-
+        url = TrackObject.getTrack(this).previewUrl
+        presenter = AudioPlayerPresenter(
+            activity = this,
+            view = this,
+            mediaInteractor = MediaInteractorImpl(AudioPlayerRepositoryImpl(url))
+        )
     }
+
     override fun onPause() {
         super.onPause()
-        pausePlayer()
-    }
-    override fun onDestroy() {
-        super.onDestroy()
-        handler.removeCallbacksAndMessages(null)
-        mediaPlayer.release()
+        presenter.pausePlayer()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.onDestroy()
+    }
 
 
     // Достает трек из json и отображает его
@@ -83,16 +83,30 @@ class AudioPlayerActivity : AppCompatActivity() {
         playButton = findViewById(R.id.play_button)
         likeButton = findViewById(R.id.like_button)
         excerptDuration = findViewById(R.id.excerpt_duration)
+    }
 
-        val track = Gson().fromJson((intent.getStringExtra(TRACK_OBJECT)), Track::class.java)
+
+    //cлушатель кнопки назад и кнопки play
+    private fun settingListeners() {
+        returnItemImageView.setNavigationOnClickListener {
+            presenter.backButtonClicked()
+        }
+
+        playButton.setOnClickListener {
+            playButton.startAnimation(AnimationUtils.loadAnimation(this, R.anim.animation))
+            presenter.playButtonClicked()
+        }
+    }
+
+    override fun createTrack(track: Track, startPosition: Int) {
 
         url = track.previewUrl
 
+        updateTrackDuration(currentPositionMediaPlayer = startPosition)
         trackName.text = track.trackName
         artistName.text = track.artistName
         duration.text = SimpleDateFormat("mm:ss", Locale.getDefault()).format(track.trackTimeMillis)
         albumName.text = track.collectionName
-
         year.text = track.releaseDate.substring(0, 4)
         genre.text = track.primaryGenreName
         country.text = track.country
@@ -104,65 +118,12 @@ class AudioPlayerActivity : AppCompatActivity() {
             .transform(RoundedCorners(8))
             .into(coverImage)
     }
-    //cлушатель кнопки назад и кнопки play
-    private fun settingListeners() {
-        returnItemImageView.setNavigationOnClickListener {
-            finish()
+        override fun updateTrackDuration(currentPositionMediaPlayer: Int) {
+            excerptDuration.text =
+                SimpleDateFormat("mm:ss", Locale.getDefault()).format(currentPositionMediaPlayer)
         }
 
-        playButton.setOnClickListener {
-            playButton.startAnimation(AnimationUtils.loadAnimation(this, R.anim.animation))
-            playbackControl()
-
+        override fun updatePlayButton(imageResource: Int) {
+            playButton.setImageResource(imageResource)
         }
     }
-    //подготавливает медиаплеер к воспроизведению
-    private fun preparePlayer() {
-        mediaPlayer.setDataSource(url)
-        mediaPlayer.prepareAsync()
-        mediaPlayer.setOnPreparedListener {
-            playButton.isEnabled = true
-            playerState = STATE_PREPARED
-        }
-        mediaPlayer.setOnCompletionListener {
-            playButton.setImageResource(R.drawable.play_button)
-            handler.removeCallbacksAndMessages(null)
-            changeDuration(0)
-            playerState = STATE_PREPARED
-        }
-    }
-    private fun startPlayer() {
-        mediaPlayer.start()
-        playerState = STATE_PLAYING
-        playButton.setImageResource(R.drawable.stop_button)
-        handler.postDelayed(object : Runnable {
-            override fun run() {
-                changeDuration(mediaPlayer.currentPosition)
-                handler.postDelayed(this, DELAY)
-            }
-        }, DELAY)
-    }
-
-    private fun pausePlayer() {
-        mediaPlayer.pause()
-        playerState = STATE_PAUSED
-        playButton.setImageResource(R.drawable.play_button)
-        handler.removeCallbacksAndMessages(null)
-    }
-
-    private fun playbackControl() {
-        when(playerState) {
-            STATE_PLAYING -> {
-                pausePlayer()
-            }
-            STATE_PREPARED, STATE_PAUSED -> {
-                startPlayer()
-            }
-        }
-    }
-    //меняем время по ходу воспроизведения
-    private fun changeDuration(milliseconds: Int) {
-        excerptDuration.text =
-            SimpleDateFormat("mm:ss", Locale.getDefault()).format(milliseconds)
-    }
-}
