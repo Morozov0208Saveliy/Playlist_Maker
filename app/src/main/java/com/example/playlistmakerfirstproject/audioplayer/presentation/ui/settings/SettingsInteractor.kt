@@ -1,9 +1,8 @@
-package com.example.playlistmakerfirstproject.audioplayer.data.setting.settings
+package com.example.playlistmakerfirstproject.audioplayer.presentation.ui.settings
 
 import com.example.playlistmakerfirstproject.audioplayer.presentation.ui.settings.model.ThemeSettings
 
-interface SettingsRepository {
-
+interface SettingsInteractor {
     fun getThemeSettings(): ThemeSettings
     fun updateThemeSetting(settings: ThemeSettings)
 }

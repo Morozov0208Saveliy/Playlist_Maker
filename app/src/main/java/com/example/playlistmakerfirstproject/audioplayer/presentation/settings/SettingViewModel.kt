@@ -9,11 +9,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.playlistmakerfirstproject.audioplayer.domain.setting.settings.SettingsInteractor
-import com.example.playlistmakerfirstproject.audioplayer.domain.setting.settings.model.ThemeSettings
+import com.example.playlistmakerfirstproject.audioplayer.presentation.ui.settings.SettingsInteractor
+import com.example.playlistmakerfirstproject.audioplayer.presentation.ui.settings.model.ThemeSettings
 import com.example.playlistmakerfirstproject.audioplayer.domain.setting.sharing.SharingInteractor
 
-class SettingViewModel(private val settingsInteractor:SettingsInteractor,
+class SettingViewModel(private val settingsInteractor: SettingsInteractor,
                        private val sharingInteractor:SharingInteractor
 ) : ViewModel() {
 

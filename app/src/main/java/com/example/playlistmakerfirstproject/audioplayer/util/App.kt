@@ -6,8 +6,8 @@ import com.example.playlistmakerfirstproject.audioplayer.di.dataModule
 import com.example.playlistmakerfirstproject.audioplayer.di.interactorModule
 import com.example.playlistmakerfirstproject.audioplayer.di.repositoryModule
 import com.example.playlistmakerfirstproject.audioplayer.di.viewModelModule
-import com.example.playlistmakerfirstproject.audioplayer.domain.setting.settings.SettingsInteractor
-import com.example.playlistmakerfirstproject.audioplayer.domain.setting.settings.model.ThemeSettings
+import com.example.playlistmakerfirstproject.audioplayer.presentation.ui.settings.SettingsInteractor
+import com.example.playlistmakerfirstproject.audioplayer.presentation.ui.settings.model.ThemeSettings
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext.startKoin
 import org.koin.java.KoinJavaComponent.getKoin

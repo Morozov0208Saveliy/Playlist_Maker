@@ -8,8 +8,8 @@ import com.example.playlistmakerfirstproject.audioplayer.domain.m_navigation.Int
 import com.example.playlistmakerfirstproject.audioplayer.domain.m_navigation.impl.InternalNavigationInteractorImpl
 import com.example.playlistmakerfirstproject.audioplayer.domain.player.AudioPlayerInteractor
 import com.example.playlistmakerfirstproject.audioplayer.domain.player.impl.AudioPlayerInteractorImpl
-import com.example.playlistmakerfirstproject.audioplayer.domain.setting.settings.SettingsInteractor
-import com.example.playlistmakerfirstproject.audioplayer.domain.setting.settings.impl.SettingsInteractorImpl
+import com.example.playlistmakerfirstproject.audioplayer.presentation.ui.settings.SettingsInteractor
+import com.example.playlistmakerfirstproject.audioplayer.presentation.ui.settings.impl.SettingsInteractorImpl
 import com.example.playlistmakerfirstproject.audioplayer.domain.setting.sharing.SharingInteractor
 import com.example.playlistmakerfirstproject.audioplayer.domain.setting.sharing.impl.SharingInteractorImpl
 import com.google.gson.Gson

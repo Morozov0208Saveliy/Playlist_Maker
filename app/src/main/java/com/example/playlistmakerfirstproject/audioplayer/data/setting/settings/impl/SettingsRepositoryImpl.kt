@@ -2,7 +2,7 @@ package com.example.playlistmakerfirstproject.audioplayer.data.setting.settings.
 
 import android.content.SharedPreferences
 import com.example.playlistmakerfirstproject.audioplayer.data.setting.settings.SettingsRepository
-import com.example.playlistmakerfirstproject.audioplayer.domain.setting.settings.model.ThemeSettings
+import com.example.playlistmakerfirstproject.audioplayer.presentation.ui.settings.model.ThemeSettings
 
 private const val SHARED_PREFS_DARK_MODE = "shared_prefs_dark_mode"
 private const val DARK_MODE = "dark_mode"

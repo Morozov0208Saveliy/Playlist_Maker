@@ -29,7 +29,7 @@ class TrackRepositoryImpl(private val networkClient: NetworkClient) : TrackRepos
                         it.releaseDate,
                         it.primaryGenreName,
                         it.country,
-                        it.previewUrl
+                        it.previewUrl ?: "" // Provide a default value (empty string) for null previewUrl
                     )
                 })
             }

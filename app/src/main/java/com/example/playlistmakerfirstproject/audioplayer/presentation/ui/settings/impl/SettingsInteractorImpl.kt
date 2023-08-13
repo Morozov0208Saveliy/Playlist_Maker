@@ -1,8 +1,8 @@
-package com.example.playlistmakerfirstproject.audioplayer.domain.setting.settings.impl
+package com.example.playlistmakerfirstproject.audioplayer.presentation.ui.settings.impl
 
 import com.example.playlistmakerfirstproject.audioplayer.data.setting.settings.SettingsRepository
-import com.example.playlistmakerfirstproject.audioplayer.domain.setting.settings.SettingsInteractor
-import com.example.playlistmakerfirstproject.audioplayer.domain.setting.settings.model.ThemeSettings
+import com.example.playlistmakerfirstproject.audioplayer.presentation.ui.settings.SettingsInteractor
+import com.example.playlistmakerfirstproject.audioplayer.presentation.ui.settings.model.ThemeSettings
 
 class SettingsInteractorImpl(
     private val settingRepository: SettingsRepository
