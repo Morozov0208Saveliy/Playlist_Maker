@@ -1,49 +1,306 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name="ButtonStyle" parent="Widget.MaterialComponents.Button.UnelevatedButton">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_marginStart">@dimen/margin_start</item>
-        <item name="android:layout_marginEnd">@dimen/margin_end</item>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name='MainButton' parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:layout_width">match_parent </item>
+        <item name="android:layout_height">0dp </item>
         <item name="android:layout_weight">1</item>
-        <item name="android:backgroundTint">@color/white</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">@dimen/text_size</item>
-        <item name="cornerRadius">16dp</item>
-        <item name="iconGravity">textStart</item>
-        <item name="iconPadding">10dp</item>
+        <item name="android:layout_marginLeft">@dimen/buttom_left </item>
+        <item name="android:layout_marginRight">@dimen/buttom_right </item>
+        <item name="android:layout_marginTop">@dimen/margin_top </item>
+        <item name="android:layout_marginBottom"> 8dp</item>
+        <item name="android:backgroundTint">?attr/colorOnPrimary</item>
+        <item name="android:textColor">?attr/colorOnSecondary </item>
+        <item name="android:textSize"> @dimen/menu_text_size</item>
+        <item name="android:textAllCaps">false</item>
         <item name="iconTint">@color/black</item>
-        <item name="android:inputType">textCapWords</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">@dimen/icon_padding</item>
+        <item name="cornerRadius">@dimen/corner_radius</item>
         <item name="android:fontFamily">@font/ys_display_medium</item>
+        <item name="android:textFontWeight" tools:targetApi="p">500</item>
     </style>
-    <style name="TextStyleSetting">
-        <item name="android:layout_width">fill_parent</item>
+
+    <style name='MainHeadText'>
+        <item name="android:fontFamily">@font/ys_display_medium</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:layout_marginVertical">@dimen/margin_vertical</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:layout_marginStart">@dimen/margin_end_start</item>
+        <item name="android:layout_marginTop">14dp</item>
+        <item name="android:layout_marginLeft">17dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/menu_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textFontWeight" tools:targetApi="p">500</item>
+    </style>
+
+    <style name='SettingsScreenText'>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">?attr/colorOnSecondary </item>
+        <item name="android:paddingLeft">@dimen/padding_left_settings_text</item>
+        <item name="android:paddingTop">@dimen/padding_top_settings_text</item>
+        <item name="android:paddingBottom">@dimen/padding_bottom_settings_text</item>
         <item name="android:fontFamily">@font/ys_display_regular</item>
-
+        <item name="android:textSize">16sp</item>
+        <item name="android:textFontWeight" tools:targetApi="p">400</item>
     </style>
 
-    <style name="SCBSwitch" parent="Theme.AppCompat.Light">
-        <!-- active thumb & track color (30% transparency) -->
-        <item name="colorControlActivated">@color/grey</item>
 
-        <!-- inactive thumb color -->
-        <item name="colorSwitchThumbNormal">@color/grey
-        </item>
 
-        <!-- inactive track color (30% transparency) -->
-        <item name="android:colorForeground">#42221f1f
-        </item>
+    <style name='SettingsScreenIcons'>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">end</item>
+        <item name="android:tint"> ?attr/colorSecondaryVariant  </item>
     </style>
-    <style name="YSMedium22">
+
+
+
+    <style name='HeadText'>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">64dp </item>
+        <item name="android:layout_marginTop">14dp </item>
+        <item name="android:textColor">?attr/colorPrimaryVariant </item>
         <item name="android:fontFamily">@font/ys_display_medium</item>
-        <item name="android:textColor">?attr/colorOnPrimary</item>
-        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textFontWeight" tools:targetApi="p">500</item>
     </style>
 
+    <style name='BackIconHead'>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">20dp </item>
+        <item name="android:layout_marginTop">20dp </item>
+        <item name="android:tint"> ?attr/colorPrimaryVariant </item>
+
+    </style>
+    <style name='MainLayout'>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@color/blue </item>
+
+    </style>
+
+    <style name="EditTextBar">
+
+        <item name="android:layout_height">36dp </item>
+        <item name="android:textColorHint">#AEAFB4 </item>
+        <item name="android:drawablePadding">9dp </item>
+        <item name="android:paddingStart">13dp </item>
+        <item name="android:textColor"> @color/black</item>
+    </style>
+
+    <style name="ic_clear">
+        <item name="android:layout_width">wrap_content </item>
+        <item name="android:layout_height">wrap_content </item>
+        <item name="android:layout_gravity">right</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:layout_marginEnd">12dp</item>
+        <item name="android:backgroundTint">#E6E8EB</item>
+
+    </style>
+
+    <style name="track_name">
+        <item name="android:fontFamily"> @font/ys_display_regular </item>
+        <item name="android:textColor"> @color/black </item>
+        <item name="android:textSize"> 16sp </item>
+        <item name="android:layout_width">@dimen/track_name_frame_width </item>
+        <item name="android:layout_height">@dimen/track_name_frame_height</item>
+        <item name="android:layout_marginStart">@dimen/track_name_frame_marginStart</item>
+        <item name="android:layout_marginTop">@dimen/track_name_frame_marginTop</item>
+    </style>
+
+
+    <style name="artist_time_track">
+
+        <item name="android:layout_width"> wrap_content </item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor"> @color/artist_time_track_light_mode </item>
+        <item name="android:textSize"> 11sp </item>
+        <item name="android:fontFamily"> @font/ys_display_regular </item>
+        <item name="android:maxLines"> 1 </item>
+        <item name="android:ellipsize"> end </item>
+    </style>
+
+    <style name="ellipse_devider">
+        <item name="android:layout_width"> wrap_content </item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="placeholder_button">
+        <item name="android:visibility">invisible</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:backgroundTint">@color/black</item>
+        <item name="android:paddingStart">14dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingEnd">14dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="placeholder_text">
+        <item name="android:layout_width">312dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:fontFamily">@font/ys_display_medium</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">19sp</item>
+    </style>
+
+    <style name="placeholder_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">#FFFFFF</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_marginTop">210dp</item>
+        <item name="android:visibility">visible</item>
+    </style>
+
+
+
+    <style name="plaseholder_image">
+        <item name="android:layout_width">120dp</item>
+        <item name="android:layout_height">120dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_weight">1</item>
+
+    </style>
+
+    <style name="plaseholder_image_something_wrong">
+        <item name="android:layout_width">120dp</item>
+        <item name="android:layout_height">120dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:src">@drawable/something_wrong</item>
+    </style>
+
+    <style name="button_clear_history">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">11dp</item>
+        <item name="android:backgroundTint">@color/black</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:visibility">visible</item>
+    </style>
+
+    <style name="history_headline">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">22dp</item>
+        <item name="android:fontFamily">@font/ys_display_medium</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">#1A1B22</item>
+        <item name="android:textSize">19sp</item>
+    </style>
+
+    <style name="ic_fav_audioplayer_screen">
+        <item name="android:layout_width">51dp</item>
+        <item name="android:layout_height">51dp</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="ic_add_to_pl">
+        <item name="android:layout_width">51dp</item>
+        <item name="android:layout_height">51dp</item>
+        <item name="android:layout_marginTop">54dp</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="track_name_AP_screen">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:fontFamily">@font/ys_display_medium</item>
+        <item name="android:textColor">#1A1B22</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="artist_name_AP_screen">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:fontFamily">@font/ys_display_medium</item>
+        <item name="android:textColor">#1A1B22</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="current_time_AP_screen">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:fontFamily">@font/ys_display_medium</item>
+        <item name="android:textColor">#1A1B22</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="results_AP_screen">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:fontFamily">@font/ys_display_regular</item>
+        <item name="android:textColor">#1A1B22</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="params_AP_screen">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:fontFamily">@font/ys_display_regular</item>
+        <item name="android:textColor">#AEAFB4</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="ic_play_button_AP_screen">
+        <item name="android:layout_width">83dp</item>
+        <item name="android:layout_height">83dp</item>
+        <item name="android:layout_marginTop">38dp</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="TextTabLayout">
+        <item name="textAllCaps">false</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/ys_display_medium</item>
+        <item name="tabTextColor">@color/black</item>
+        <item name="tabSelectedTextColor">@color/black</item>
+
+    </style>
+
+    <style name="button_create_new_playlist">
+        <item name="android:backgroundTint">@color/black</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="cornerRadius">54dp</item>
+        <item name="android:gravity">center</item>
+
+    </style>
+
+    <style name="tab_indicator" parent="Widget.MaterialComponents.TabLayout">>
+        <item name="tabIndicatorFullWidth">false</item>
+        <item name="tabInlineLabel">true</item>
+
+    </style>
+
+        <style name='SettingsSwitchIcons'>
+            <item name="android:layout_gravity">end</item>
+            <item name="android:thumbTint">#AEAFB4</item>
+            <item name="android:trackTint">#AEAFB4</item>
+        </style>
+    <style name="divider_context_nav_bar">
+        <item name="android:backgroundTint">#E6E8EB</item>
+        <item name="android:background">#E6E8EB</item>
+    </style>
 
 </resources>

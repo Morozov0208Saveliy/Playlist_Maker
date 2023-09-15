@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=""
+
+    >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp">
+
+        <TextView
+            style="@style/HeadText"
+            android:layout_marginLeft="16dp"
+            android:text="@string/settings" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:layout_marginTop="80dp"
+            >
+            <TextView
+                android:text="@string/night_theme"
+
+                style="@style/SettingsScreenText" />
+
+            <Switch
+                android:id="@+id/theme"
+                style="@style/SettingsSwitchIcons"
+                android:layout_width="wrap_content"
+                android:layout_height="61dp"
+                android:layout_centerHorizontal="true" />
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:layout_marginTop="141dp"
+            android:id="@+id/share" >
+            <TextView
+                style="@style/SettingsScreenText"
+                android:text="@string/share" />
+
+            <ImageView
+                style="@style/SettingsScreenIcons"
+                android:layout_width="18dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/share" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/support"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:layout_marginTop="202dp">
+            <TextView
+                style="@style/SettingsScreenText"
+                android:text="@string/support" />
+            <ImageView
+                style="@style/SettingsScreenIcons"
+                android:layout_width="20dp"
+                android:src="@drawable/support"
+                android:layout_marginEnd="14dp" />
+        </FrameLayout>
+        <FrameLayout
+            android:id="@+id/agreement"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:layout_marginTop="263dp">
+
+            <TextView
+                style="@style/SettingsScreenText"
+                android:text="@string/agreement"
+                android:layout_height="61dp"/>
+
+            <ImageView
+                style="@style/SettingsScreenIcons"
+                android:layout_width="8dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/arrow_2"
+                android:layout_height="61dp"/>
+        </FrameLayout>
+    </FrameLayout>
+</FrameLayout>

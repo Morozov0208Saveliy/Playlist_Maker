@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margin_start">17dp</dimen>
-    <dimen name="margin_end">15dp</dimen>
-    <dimen name="text_size">22sp</dimen>
-    <dimen name="margin_end_start">16dp</dimen>
-    <dimen name="margin_vertical">21dp</dimen>
-    <dimen name="margin_recycler_element">8dp</dimen>
-    <dimen name="image_view">45dp</dimen>
-    <dimen name="text_size_track">16sp</dimen>
-    <dimen name="padding_text_view">5dp</dimen>
-    <dimen name="text_size_track_attribute">11sp</dimen>
-    <dimen name="margin_top_bottom">14dp</dimen>
-    <dimen name="corner_radius_2dp">2dp</dimen>
-    <dimen name="corner_radius_54dp">54dp</dimen>
-    <dimen name="textSize_14sp">14sp</dimen>
-    <dimen name="textSize_13sp">13sp</dimen>
-    <dimen name="layout_marginEnd_16dp">16dp</dimen>
-    <dimen name="layout_marginStart_16dp">16dp</dimen>
-    <dimen name="layout_marginTop_148dp">148dp</dimen>
-    <dimen name="layout_width_44dp">44dp</dimen>
-    <dimen name="layout_height_44dp">44dp</dimen>
+    <dimen name="icon_padding">10dp</dimen>
+    <dimen name="menu_text_size">22sp</dimen>
+    <dimen name="buttom_left">17dp</dimen>
+    <dimen name="buttom_right">15dp</dimen>
+    <dimen name="buttom_top">16dp</dimen>
+    <dimen name="corner_radius">16dp</dimen>
+    <dimen name="text_size_settings">16sp</dimen>
+    <dimen name="padding_left_settings_text">21dp</dimen>
+    <dimen name="padding_top_settings_text">21dp</dimen>
+    <dimen name="padding_bottom_settings_text">21dp</dimen>
+    <dimen name="margin_top">16dp</dimen>
+    <dimen name="setting_imagine_margin">20dp</dimen>
+    <dimen name="setting_first_frame_top">141dp</dimen>
+    <dimen name="setting_second_frame_top">202dp</dimen>
+    <dimen name="setting_third_frame_top">263dp</dimen>
+    <dimen name="art_work_height">45dp</dimen>
+    <dimen name="art_work_width">45dp</dimen>
+    <dimen name="art_work_corners">2dp</dimen>
+    <dimen name="art_work_marginStart">13dp</dimen>
+    <dimen name="art_work_marginTop">8dp</dimen>
+    <dimen name="track_name_frame_width">250dp</dimen>
+    <dimen name="track_name_frame_height">19dp</dimen>
+    <dimen name="track_name_frame_marginStart">8dp</dimen>
+    <dimen name="track_name_frame_marginTop">14dp</dimen>
+    <dimen name="radius_art_work">2dp</dimen>
+
+
 </resources>
