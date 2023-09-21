@@ -27,7 +27,7 @@ val repositoryModule = module {
     }
 
     single<MediaPlayerRepository> {
-        MediaPlayerRepositoryImpl(get())
+        MediaPlayerRepositoryImpl()
     }
 
     single<ExternalNavigator> {

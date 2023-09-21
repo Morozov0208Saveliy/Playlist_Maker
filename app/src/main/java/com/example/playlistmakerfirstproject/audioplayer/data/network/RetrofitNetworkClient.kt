@@ -7,23 +7,26 @@ import com.example.playlistmakerfirstproject.audioplayer.data.ERROR_NO_CONNECTIO
 import com.example.playlistmakerfirstproject.audioplayer.data.NetworkClient
 import com.example.playlistmakerfirstproject.audioplayer.data.dto.Response
 import com.example.playlistmakerfirstproject.audioplayer.data.dto.TrackSearchRequest
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class RetrofitNetworkClient(private val imdbService: Itunes,
                             private val context: Context)  : NetworkClient {
 
-    override fun getTracksFromItunes(dto: Any): Response {
+    override suspend fun getTracksFromItunes(dto: Any): Response {
         if (!isConnected()){
             return Response().apply { resultCode = ERROR_NO_CONNECTION_TO_INTERNET }
         }
         if (dto !is TrackSearchRequest) {
             return Response().apply { resultCode = 400 }
         }
-        val resp = imdbService.search(dto.expression).execute()
-        val body = resp.body() ?: Response()
-        return if (body != null) {
-            body.apply { resultCode = resp.code() }
-        } else {
-            Response().apply { resultCode = resp.code() }
+        return withContext(Dispatchers.IO) {
+            try {
+                val resp = imdbService.search(dto.expression)
+                resp.apply { resultCode = 200 }
+            } catch (e: Throwable) {
+                Response().apply { resultCode = 500 }
+            }
         }
     }
 

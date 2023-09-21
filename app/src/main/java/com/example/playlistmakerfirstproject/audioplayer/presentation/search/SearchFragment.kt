@@ -9,11 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.playlistmakerfirstproject.R
 import com.example.playlistmakerfirstproject.audioplayer.domain.models.Track
 import com.example.playlistmakerfirstproject.audioplayer.presentation.ui.TracksState
 import com.example.playlistmakerfirstproject.databinding.FragmentSearchBinding
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchFragment : Fragment(), TrackAdapter.Listener {
@@ -130,7 +133,10 @@ class SearchFragment : Fragment(), TrackAdapter.Listener {
         val current = isClickAllowed
         if (isClickAllowed) {
             isClickAllowed = false
-            handler.postDelayed({ isClickAllowed = true }, CLICK_DEBOUNCE_DELAY_MC)
+            viewLifecycleOwner.lifecycleScope.launch {
+                delay(CLICK_DEBOUNCE_DELAY_MC)
+                isClickAllowed = true
+            }
         }
         return current
     }
@@ -246,12 +252,6 @@ class SearchFragment : Fragment(), TrackAdapter.Listener {
         super.onDestroy()
         searchTrackViewModel.onDestroy()
     }
-
-    override fun onResume() {
-        super.onResume()
-        searchTrackViewModel.onResume()
-    }
-
 
     companion object {
         const val SEARCH_TYPE = "SEARCH_TYPE"
