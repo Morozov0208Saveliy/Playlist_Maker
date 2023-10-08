@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rcTrackList"
     android:layout_width="match_parent"
-    android:layout_height="61dp"
+    android:layout_height="wrap_content"
     android:orientation="horizontal">
 
     <ImageView
@@ -12,7 +12,7 @@
         android:layout_height="@dimen/art_work_height"
         android:layout_marginStart="@dimen/art_work_marginStart"
         android:layout_marginTop="@dimen/art_work_marginTop"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -23,14 +23,13 @@
         <TextView
             android:id="@+id/trackName"
             style="@style/track_name"
-            tools:text="Song #1"
-            android:maxLines="1"
             android:ellipsize="end"
-            />
+            android:maxLines="1"
+            tools:text="Song #1" />
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="13dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="1dp"
             android:orientation="horizontal">
@@ -38,18 +37,20 @@
             <TextView
                 android:id="@+id/artistName"
                 style="@style/artist_time_track"
-                android:layout_weight="1"
                 android:layout_gravity="bottom|start"
+                android:layout_weight="1"
                 tools:text="The Beatles" />
 
             <ImageView
                 style="@style/ellipse_devider"
                 android:src="@drawable/ic_ellipse" />
+
             <TextView
                 android:id="@+id/trackTime"
                 style="@style/artist_time_track"
-                android:layout_weight="0"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
+                android:layout_weight="0"
                 tools:text="2:34" />
         </LinearLayout>
     </LinearLayout>
@@ -57,8 +58,8 @@
     <ImageView
         style="@style/SettingsScreenIcons"
         android:layout_width="8dp"
+        android:layout_height="match_parent"
         android:layout_marginEnd="20dp"
-        android:src="@drawable/arrow_2"
-        android:layout_height="match_parent"/>
+        android:src="@drawable/arrow_2" />
 
 </LinearLayout>

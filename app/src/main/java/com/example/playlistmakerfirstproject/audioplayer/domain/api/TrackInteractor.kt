@@ -1,13 +1,11 @@
 package com.example.playlistmakerfirstproject.audioplayer.domain.api
 
 import com.example.playlistmakerfirstproject.audioplayer.domain.models.Track
+import kotlinx.coroutines.flow.Flow
 
 interface TrackInteractor {
-    fun search(expression: String, consumer: TrackConsumer)
+    fun search(expression: String): Flow<Pair<List<Track>?, String?>>
 
-    interface TrackConsumer {
-        fun consume(foundTracks: List<Track>?, errorMessage:String?)
-    }
-
-    fun loadTracks(onComplete : (Boolean) -> Unit)
+    fun loadTracks(onComplete: (Boolean) -> Unit)
+    fun getFavIndicators(): Flow<List<Int>>
 }

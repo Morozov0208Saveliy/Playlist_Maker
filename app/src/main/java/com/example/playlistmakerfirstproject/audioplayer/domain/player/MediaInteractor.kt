@@ -1,6 +1,7 @@
 package com.example.playlistmakerfirstproject.audioplayer.domain.player
 
 import com.example.playlistmakerfirstproject.audioplayer.domain.models.State
+import com.example.playlistmakerfirstproject.audioplayer.domain.models.Track
 
 interface MediaPlayerRepository {
 
@@ -11,6 +12,9 @@ interface MediaPlayerRepository {
     fun pause()
 
     fun switchPlayerState(onStateChangedTo: (s: State) -> Unit)
+    suspend fun saveTrackToFav(track: Track)
+
+    suspend fun deleteTrackFromFav(track: Track)
 
 
     fun exit()

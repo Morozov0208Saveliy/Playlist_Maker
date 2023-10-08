@@ -5,29 +5,37 @@ import android.os.Looper
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.playlistmakerfirstproject.audioplayer.domain.api.TrackInteractor
 import com.example.playlistmakerfirstproject.audioplayer.domain.history.HistoryInteractor
 import com.example.playlistmakerfirstproject.audioplayer.domain.m_navigation.InternalNavigationInteractor
 import com.example.playlistmakerfirstproject.audioplayer.domain.models.Track
 import com.example.playlistmakerfirstproject.audioplayer.presentation.ui.TracksState
-import java.util.*
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
+
 
 class SearchViewModel(
     private val searchInteractor: TrackInteractor,
     private val historyInteractor: HistoryInteractor,
     private val internalNavigationInteractor: InternalNavigationInteractor
 ) : ViewModel() {
-
+    companion object {
+        private const val SEARCH_DEBOUNCE_DELAY = 2000L
+        private const val ERROR_CONNECTION = -1
+        private const val ERROR_EMPTY_LIST = -2
+    }
 
     private var searchTrackStatusLiveData = MutableLiveData<TracksState>()
-
     fun getSearchTrackStatusLiveData(): LiveData<TracksState> = searchTrackStatusLiveData
-
-
     private var tracks = ArrayList<Track>()
     private val handler = Handler(Looper.getMainLooper())
     private var lastSearchText: String? = null
-
+    private var searchJob: Job? = null
     private val searchRunnable = Runnable {
         val newSearchText = lastSearchText
         if (newSearchText!!.isEmpty()) {
@@ -40,20 +48,31 @@ class SearchViewModel(
 
     fun onDestroy() {
         handler.removeCallbacks(searchRunnable)
+        lastSearchText = null
     }
 
     fun onResume() {
-        getHistory()
-        if (tracks.isEmpty()) {
-            showHistory()
-        }
+
     }
+
 
     // поиск по вводу каждые 2 сек
     fun searchDebounce(changedText: String) {
-        this.lastSearchText = changedText
-        handler.removeCallbacks(searchRunnable)
-        handler.postDelayed(searchRunnable, SEARCH_DEBOUNCE_DELAY)
+        if (lastSearchText == changedText) {
+            return
+        }
+        if (changedText.isEmpty()) {
+            showHistory()
+            return
+        }
+        lastSearchText = changedText
+
+        searchJob?.cancel()
+        searchJob = viewModelScope.launch {
+            delay(SEARCH_DEBOUNCE_DELAY)
+            searchAction(changedText)
+
+        }
     }
 
     fun getHistory(): ArrayList<Track> {
@@ -86,7 +105,6 @@ class SearchViewModel(
     }
 
     fun searchAction(newSearchText: String) {
-
         if (newSearchText.isNotEmpty()) {
             searchTrackStatusLiveData.postValue(
                 TracksState(
@@ -99,66 +117,73 @@ class SearchViewModel(
                 )
             )
         }
-
-        searchInteractor.search(newSearchText, object : TrackInteractor.TrackConsumer {
-            override fun consume(foundTracks: List<Track>?, errorMessage: String?) {
-                handler.post {
-
-                    if (foundTracks != null) {
-                        tracks.clear()
-                        tracks.addAll(foundTracks)
-                    }
-                    when {
-                        errorMessage != null -> {
-                            searchTrackStatusLiveData.postValue(
-                                TracksState(
-                                    emptyList(),
-                                    false,
-                                    ERROR_CONNECTION,
-                                    needToUpdate = true,
-                                    toShowHistory = false,
-                                    history = emptyList(),
-                                )
-                            )
-                        }
-
-                        tracks.isEmpty() -> {
-                            searchTrackStatusLiveData.postValue(
-                                TracksState(
-                                    emptyList(),
-                                    false,
-                                    ERROR_EMPTY_LIST,
-                                    needToUpdate = false,
-                                    toShowHistory = false,
-                                    history = emptyList(),
-                                )
-                            )
-                        }
-
-                        else -> {
-                            searchTrackStatusLiveData.postValue(
-                                TracksState(
-                                    tracks,
-                                    false,
-                                    null,
-                                    needToUpdate = false,
-                                    toShowHistory = false,
-                                    history = emptyList(),
-                                )
-                            )
-                        }
-                    }
+        viewModelScope.launch {
+            searchInteractor
+                .search(newSearchText)
+                .collect { pair ->
+                    processResult(pair.first, pair.second)
                 }
+        }
+    }
+
+    suspend fun updateIdOfFavTracks(): List<Int> {
+        return suspendCancellableCoroutine { continuation ->
+            viewModelScope.launch {
+                searchInteractor
+                    .getFavIndicators()
+                    .collect { favIndicators ->
+                        continuation.resume(favIndicators)
+                    }
             }
-        })
     }
+}
 
-
-    companion object {
-        private const val SEARCH_DEBOUNCE_DELAY = 2000L
-        private const val ERROR_CONNECTION = -1
-        private const val ERROR_EMPTY_LIST = -2
-
+private fun processResult(foundTracks: List<Track>?, errorMessage: String?) {
+    val tracks = mutableListOf<Track>()
+    if (foundTracks != null) {
+        tracks.clear()
+        tracks.addAll(foundTracks)
     }
+    when {
+        errorMessage != null -> {
+            searchTrackStatusLiveData.postValue(
+                TracksState(
+                    emptyList(),
+                    false,
+                    ERROR_CONNECTION,
+                    needToUpdate = true,
+                    toShowHistory = false,
+                    history = emptyList(),
+                )
+            )
+        }
 
+        tracks.isEmpty() -> {
+            searchTrackStatusLiveData.postValue(
+                TracksState(
+                    emptyList(),
+                    false,
+                    ERROR_EMPTY_LIST,
+                    needToUpdate = false,
+                    toShowHistory = false,
+                    history = emptyList(),
+                )
+            )
+        }
+
+
+        else -> {
+            searchTrackStatusLiveData.postValue(
+                TracksState(
+                    tracks,
+                    false,
+                    null,
+                    needToUpdate = false,
+                    toShowHistory = false,
+                    history = emptyList(),
+                )
+            )
+        }
+    }
+}
 }
