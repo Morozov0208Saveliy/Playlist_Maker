@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.playlistmakerfirstproject.R
 import com.example.playlistmakerfirstproject.audioplayer.domain.models.Track
+import com.example.playlistmakerfirstproject.audioplayer.presentation.audioPlayer.AudioPlayerViewModel
 import com.example.playlistmakerfirstproject.audioplayer.presentation.ui.TracksState
 import com.example.playlistmakerfirstproject.databinding.FragmentSearchBinding
 import kotlinx.coroutines.delay
@@ -23,13 +24,12 @@ class SearchFragment : Fragment(), TrackAdapter.Listener {
 
     private lateinit var binding: FragmentSearchBinding
     private val searchTrackViewModel: SearchViewModel by viewModel()
-    private val handler = Handler(Looper.getMainLooper())
+    private val playerViewModel: AudioPlayerViewModel by viewModel()
     private var isClickAllowed = true
     private var textWatcher: TextWatcher? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -38,8 +38,6 @@ class SearchFragment : Fragment(), TrackAdapter.Listener {
     ): View? {
         binding = FragmentSearchBinding.inflate(inflater, container, false)
         return binding.root
-
-
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -47,26 +45,24 @@ class SearchFragment : Fragment(), TrackAdapter.Listener {
         binding.clearIcon.visibility =
             if (binding.inputEditText.text.isNotEmpty()) View.VISIBLE else View.GONE
 
+
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         searchTrackViewModel.getSearchTrackStatusLiveData()
             .observe(viewLifecycleOwner) { updatedStatus ->
                 updatedViewBasedOnStatus(updatedStatus)
             }
         binding.clearIcon.visibility =
             if (binding.inputEditText.text.isNotEmpty()) View.VISIBLE else View.GONE
-
-
-
         init()
-
         textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -82,38 +78,30 @@ class SearchFragment : Fragment(), TrackAdapter.Listener {
             }
 
             override fun afterTextChanged(s: Editable?) {
-
             }
         }
         textWatcher?.let {
             binding.inputEditText.addTextChangedListener(it)
         }
-
         // очистка строки поиска
         binding.clearIcon.setOnClickListener {
             binding.inputEditText.setText("")
             searchTrackViewModel.showHistory()
-
         }
-
         // очистка истории поиска
         binding.buttonClearHistory.setOnClickListener {
             searchTrackViewModel.clearHistory()
             searchTrackViewModel.showHistory()
-
         }
-
         binding.buttonUpdatePlaceholder.setOnClickListener {
             var searchTextRequest = binding.inputEditText.text.toString()
             searchTrackViewModel.searchAction(searchTextRequest)
         }
-
     }
 
     private fun init() {
         binding.apply {
             rcTrackList.layoutManager = LinearLayoutManager(requireContext())
-
         }
         searchTrackViewModel.showHistory()
     }
@@ -248,6 +236,7 @@ class SearchFragment : Fragment(), TrackAdapter.Listener {
 
         }
     }
+
     override fun onDestroy() {
         super.onDestroy()
         searchTrackViewModel.onDestroy()
@@ -255,9 +244,8 @@ class SearchFragment : Fragment(), TrackAdapter.Listener {
 
     companion object {
         const val SEARCH_TYPE = "SEARCH_TYPE"
-        private const val CLICK_DEBOUNCE_DELAY_MC = 1000L
+        const val CLICK_DEBOUNCE_DELAY_MC = 1000L
     }
-
 
 
 }

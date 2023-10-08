@@ -1,5 +1,6 @@
 package com.example.playlistmakerfirstproject.audioplayer.data
 
+import com.example.playlistmakerfirstproject.audioplayer.data.db.AppDatabase
 import com.example.playlistmakerfirstproject.audioplayer.data.dto.TrackSearchRequest
 import com.example.playlistmakerfirstproject.audioplayer.data.dto.TrackSearchResponse
 import com.example.playlistmakerfirstproject.audioplayer.domain.TrackRepository
@@ -8,17 +9,22 @@ import com.example.playlistmakerfirstproject.audioplayer.util.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-const val ERROR_NO_CONNECTION_TO_INTERNET =-1
-const val SEARCH_SUCCESS =200
+const val ERROR_NO_CONNECTION_TO_INTERNET = -1
+const val SEARCH_SUCCESS = 200
 
-class TrackRepositoryImpl(private val networkClient: NetworkClient) : TrackRepository {
+class TrackRepositoryImpl(
+    private val networkClient: NetworkClient,
+    private val appDatabase: AppDatabase,
+
+    ) : TrackRepository {
 
     override fun search(expression: String): Flow<Resource<List<Track>>> = flow {
         val response = networkClient.getTracksFromItunes(TrackSearchRequest(expression))
-        when (response.resultCode)  {
+        when (response.resultCode) {
             ERROR_NO_CONNECTION_TO_INTERNET -> {
                 emit(Resource.Error("Проверьте подключение к интернету"))
             }
+
             SEARCH_SUCCESS -> {
                 with(response as TrackSearchResponse) {
                     val data = results.map {
@@ -35,12 +41,30 @@ class TrackRepositoryImpl(private val networkClient: NetworkClient) : TrackRepos
                             it.previewUrl
                         )
                     }
+                    val listOfIdFavTracks = appDatabase.trackDao().getIdsOfFavouriteTracks()
+                    setFavIndicator(data, listOfIdFavTracks)
                     emit(Resource.Success(data))
                 }
             }
+
             else -> {
                 emit(Resource.Error("Ошибка сервера"))
             }
         }
+    }
+
+    override fun getFavIndicators(): Flow<List<Int>> = flow {
+        val listOfIdFavTracks = appDatabase.trackDao().getIdsOfFavouriteTracks()
+        emit(listOfIdFavTracks)
+    }
+
+    private fun setFavIndicator(data: List<Track>, listOfIdFavTracks: List<Int>) {
+        for (i in data) {
+            if (i.trackId in listOfIdFavTracks) {
+                i.isFavorite = true
+            }
+        }
+
+
     }
 }

@@ -1,24 +1,24 @@
 package com.example.playlistmakerfirstproject.audioplayer.presentation.audioPlayer
 
-import android.app.Application
-import android.os.Handler
-import android.os.Looper
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.playlistmakerfirstproject.audioplayer.domain.db.FavouriteInteractor
 import com.example.playlistmakerfirstproject.audioplayer.domain.models.State
+import com.example.playlistmakerfirstproject.audioplayer.domain.models.Track
 import com.example.playlistmakerfirstproject.audioplayer.domain.player.AudioPlayerInteractor
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
-class AudioPlayerViewModel(private val audioPlayerInterator: AudioPlayerInteractor ) : ViewModel() {
+
+class AudioPlayerViewModel(
+    private val audioPlayerInterator: AudioPlayerInteractor,
+    private val favouriteInterator: FavouriteInteractor.FavouriteInteractor,
+) : ViewModel() {
 
     private var timerJob: Job? = null
     private var statePlayerLiveData = MutableLiveData(State.PREPARED)
@@ -28,6 +28,8 @@ class AudioPlayerViewModel(private val audioPlayerInterator: AudioPlayerInteract
     private var currentTimerLiveData = MutableLiveData(0)
 
     fun getCurrentTimerLiveData(): LiveData<Int> = currentTimerLiveData
+    private var isFavourite = MutableLiveData<Boolean>()
+    fun getIsFavourite(): LiveData<Boolean> = isFavourite
 
 
     fun preparePlayer(url: String) {
@@ -43,6 +45,20 @@ class AudioPlayerViewModel(private val audioPlayerInterator: AudioPlayerInteract
             }
         }
     }
+    suspend fun checkIfTrackIsFavorite(trackId: Int): Boolean {
+        val favIndicatorsDeferred = viewModelScope.async {
+            favouriteInterator.getIdOfFavouriteTracks()
+        }
+        val favIndicators: Flow<List<Int>> = favouriteInterator.getIdOfFavouriteTracks()
+
+        val favIndicatorsList: MutableList<Int> = mutableListOf()
+
+        favIndicators.collect { list ->
+            favIndicatorsList.addAll(list)
+        }
+
+        return favIndicatorsList.contains(trackId)
+    }
 
     private fun startTimer(state: State) {
         timerJob = viewModelScope.launch {
@@ -56,6 +72,19 @@ class AudioPlayerViewModel(private val audioPlayerInterator: AudioPlayerInteract
             currentTimerLiveData.postValue(TIMER_START)
         }
     }
+    suspend fun onFavoriteClicked(track: Track) {
+        if (track.isFavorite) {
+            audioPlayerInterator.deleteTrackFromFav(track)
+            isFavourite.postValue(false)
+            track.isFavorite=false
+
+        }
+        else {
+            audioPlayerInterator.addTrackToFav(track)
+            isFavourite.postValue(true)
+            track.isFavorite=true
+        }
+    }
 
     fun changePlayerState() {
         audioPlayerInterator.switchPlayer { state ->
@@ -65,9 +94,11 @@ class AudioPlayerViewModel(private val audioPlayerInterator: AudioPlayerInteract
                     currentTimerLiveData.postValue(audioPlayerInterator.currentPosition())
                     statePlayerLiveData.postValue(State.PLAYING)
                 }
+
                 State.PAUSED -> {
                     statePlayerLiveData.postValue(State.PAUSED)
                 }
+
                 State.PREPARED -> {
                     timerJob?.cancel()
                     startTimer(State.PREPARED)
@@ -75,6 +106,7 @@ class AudioPlayerViewModel(private val audioPlayerInterator: AudioPlayerInteract
                     currentTimerLiveData.postValue(TIMER_START)
 
                 }
+
                 State.DEFAULT -> {
                     timerJob?.cancel()
                     statePlayerLiveData.postValue(State.DEFAULT)

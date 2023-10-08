@@ -15,10 +15,11 @@ class TrackInteractorImpl(private val repository: TrackRepository) : TrackIntera
 
     override fun search(expression: String): Flow<Pair<List<Track>?, String?>> {
         return repository.search(expression).map { result ->
-            when(result) {
+            when (result) {
                 is Resource.Success -> {
-                    Pair(result.data,null)
+                    Pair(result.data, null)
                 }
+
                 is Resource.Error -> {
                     Pair(null, result.message)
                 }
@@ -28,5 +29,9 @@ class TrackInteractorImpl(private val repository: TrackRepository) : TrackIntera
 
     override fun loadTracks(onComplete: (Boolean) -> Unit) {
         onComplete(true)
+    }
+
+    override fun getFavIndicators(): Flow<List<Int>> {
+        return repository.getFavIndicators()
     }
 }
