@@ -1,8 +1,10 @@
 package com.example.playlistmakerfirstproject.audioplayer.di
 
 import com.example.playlistmakerfirstproject.audioplayer.domain.api.TrackInteractor
+import com.example.playlistmakerfirstproject.audioplayer.domain.db.FavouriteInteractor
 import com.example.playlistmakerfirstproject.audioplayer.domain.history.HistoryInteractor
 import com.example.playlistmakerfirstproject.audioplayer.domain.history.impl.HistoryInteractorImpl
+import com.example.playlistmakerfirstproject.audioplayer.domain.impl.FavouriteInteractorImpl
 import com.example.playlistmakerfirstproject.audioplayer.domain.impl.TrackInteractorImpl
 import com.example.playlistmakerfirstproject.audioplayer.domain.m_navigation.InternalNavigationInteractor
 import com.example.playlistmakerfirstproject.audioplayer.domain.m_navigation.impl.InternalNavigationInteractorImpl
@@ -16,13 +18,16 @@ import com.google.gson.Gson
 import org.koin.dsl.module
 
 val interactorModule = module {
+    single<FavouriteInteractor.FavouriteInteractor> {
+        FavouriteInteractorImpl(get())
+    }
 
     single<TrackInteractor> {
         TrackInteractorImpl(get())
     }
 
     single<HistoryInteractor> {
-        HistoryInteractorImpl(get())
+        HistoryInteractorImpl(get(), get())
     }
 
     single<InternalNavigationInteractor> {
@@ -42,7 +47,6 @@ val interactorModule = module {
     }
 
     factory { Gson() }
-
 
 
 }

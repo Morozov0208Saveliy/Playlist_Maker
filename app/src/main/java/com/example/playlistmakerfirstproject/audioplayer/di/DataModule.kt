@@ -2,7 +2,9 @@ package com.example.playlistmakerfirstproject.audioplayer.di
 
 import android.content.Context
 import android.media.MediaPlayer
+import androidx.room.Room
 import com.example.playlistmakerfirstproject.audioplayer.data.NetworkClient
+import com.example.playlistmakerfirstproject.audioplayer.data.db.AppDatabase
 import com.example.playlistmakerfirstproject.audioplayer.data.history.HistoryRepository
 import com.example.playlistmakerfirstproject.audioplayer.data.history.impl.HistoryRepositoryImpl
 import com.example.playlistmakerfirstproject.audioplayer.data.network.Itunes
@@ -21,6 +23,13 @@ const val SHARED_PREFS_SEARCH_HISTORY = "search_history"
 
 
 val dataModule = module {
+
+    single {
+        Room.databaseBuilder(androidContext(), AppDatabase::class.java, "database.db")
+            .addMigrations(AppDatabase.MIGRATION_1_2)
+            .allowMainThreadQueries()
+            .build()
+    }
 
     single<Itunes> {
         Retrofit.Builder()
@@ -44,7 +53,7 @@ val dataModule = module {
 
 
     single<HistoryRepository> {
-        HistoryRepositoryImpl(get())
+        HistoryRepositoryImpl(get(),get())
     }
 
     single<NetworkClient> {

@@ -5,6 +5,7 @@ import com.example.playlistmakerfirstproject.audioplayer.presentation.audioPlaye
 import com.example.playlistmakerfirstproject.audioplayer.presentation.library.FavTracksFragmentViewModel
 import com.example.playlistmakerfirstproject.audioplayer.presentation.search.SearchViewModel
 import com.example.playlistmakerfirstproject.audioplayer.presentation.settings.SettingViewModel
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -12,15 +13,15 @@ val viewModelModule = module {
 
 
     viewModel {
-        AudioPlayerViewModel(get())
+        AudioPlayerViewModel(get(), get())
     }
 
     viewModel {
-        SettingViewModel(get(),get())
+        SettingViewModel(get(), get())
     }
 
     viewModel {
-        SearchViewModel(get(),get(),get())
+        SearchViewModel(get(), get(), get())
     }
 
     viewModel {
@@ -28,12 +29,8 @@ val viewModelModule = module {
     }
 
     viewModel {
-        FavTracksFragmentViewModel()
+        FavTracksFragmentViewModel(androidContext(), get())
     }
-
-
-
-
 
 
 }
