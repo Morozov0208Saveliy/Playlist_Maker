@@ -8,7 +8,7 @@ class TrackInPlaylistsEntityDbConvertor {
     fun map(track: Track): TrackInPlaylistsEntity {
         return TrackInPlaylistsEntity(
             id = track.trackId,
-            artworkUrl100 = track.artUrl100,
+            artworkUrl100 = track.artworkUrl100,
             trackName = track.trackName,
             artistName = track.artistName,
             collectionName = track.collectionName,

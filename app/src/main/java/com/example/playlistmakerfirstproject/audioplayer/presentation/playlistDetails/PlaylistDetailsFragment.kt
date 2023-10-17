@@ -131,7 +131,7 @@ class PlaylistDetailsFragment : Fragment(), TrackAdapter.OnItemClickListener,
             binding.recycleViewBottomSheet.visibility = View.VISIBLE
             val numberOfTracks = tracks.size
             val updatedTracks = tracks.map { track ->
-                track.copy(artUrl100 = track.artUrl100.replaceAfterLast('/', "60x60bb.jpg"))
+                track.copy(artworkUrl100 = track.artworkUrl100.replaceAfterLast('/', "60x60bb.jpg"))
             }
 
 

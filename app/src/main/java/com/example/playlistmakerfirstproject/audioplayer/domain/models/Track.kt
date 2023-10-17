@@ -9,34 +9,39 @@ data class Track(
     val trackName: String,
     val artistName: String,
     val trackTimeMillis: Int,
-    val artUrl100: String,
-    val trackId: Int,
-    val collectionName: String,
+    val artworkUrl100: String,
+    val trackId:Int,
+    val collectionName:String,
     val releaseDate: String,
-    val primaryGenreName: String,
-    val country: String,
-    val previewUrl: String?,
+    val primaryGenreName:String,
+    val country:String,
+    val previewUrl: String,
     var isFavorite: Boolean = false
-) : Serializable {
 
-    fun toTrackInfo() = TrackInfo(
-        trackName = trackName,
-        artistName = artistName,
-        trackTime = SimpleDateFormat("mm:ss", Locale.getDefault()).format(trackTimeMillis.toLong()),
-        artworkUrl100 = artUrl100.substringBeforeLast('/') + "512x512bb.jpg",
-        trackId = trackId,
-        collectionName = collectionName,
-        releaseDate = getFormattedYear(),
-        primaryGenreName = primaryGenreName,
-        country = country,
-        previewUrl = previewUrl ?: "",
-        isFavorite = isFavorite
+): Serializable {
+
+
+
+    fun toTrackInfo(track:Track) = TrackInfo(
+        trackName = track.trackName,
+        artistName = track.artistName,
+        trackTime = SimpleDateFormat("mm:ss", Locale.getDefault()).format(track.trackTimeMillis),
+        artworkUrl100 = track.artworkUrl100.replaceAfterLast('/', "512x512bb.jpg"),
+        trackId = track.trackId,
+        collectionName = track.collectionName,
+        releaseDate = track.getFormattedYear(track),
+        primaryGenreName = track.primaryGenreName,
+        country = track.country,
+        previewUrl = track.previewUrl,
+        isFavorite=track.isFavorite
+
     )
 
-    private fun getFormattedYear(): String {
+    private fun getFormattedYear(track: Track): String {
         val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
         val calendar: Calendar = Calendar.getInstance()
-        calendar.time = format.parse(releaseDate)!!
+        calendar.setTime(format.parse(track.releaseDate))
         return calendar.get(Calendar.YEAR).toString()
     }
+
 }

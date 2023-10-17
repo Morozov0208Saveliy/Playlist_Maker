@@ -17,6 +17,7 @@ class PlaylistsAdapterBottomSheet(
 ) : RecyclerView.Adapter<PlaylistsAdapterBottomSheet.PlaylistHolderSmall>() {
 
 
+
     inner class PlaylistHolderSmall(private val binding: PlaylistViewSmallBinding) :
 
         RecyclerView.ViewHolder(binding.root) {
@@ -26,8 +27,7 @@ class PlaylistsAdapterBottomSheet(
         fun bind(playlist: Playlist) {
             binding.apply {
                 playlistName.text = playlist.name
-                numberOfTracks.text =
-                    "${playlist.numberOfTracks} ${getTrackWordForm(playlist.numberOfTracks ?: 0)}"
+                numberOfTracks.text = "${playlist.numberOfTracks} ${getTrackWordForm(playlist.numberOfTracks?:0)}"
                 Glide.with(root.context)
                     .load(playlist.imagePath)
                     .transform(RoundedCorners(cornerRadius))
@@ -49,8 +49,7 @@ class PlaylistsAdapterBottomSheet(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaylistHolderSmall {
-        val binding =
-            PlaylistViewSmallBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = PlaylistViewSmallBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PlaylistHolderSmall(binding)
     }
 

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.playlistmakerfirstproject.R
 import com.example.playlistmakerfirstproject.audioplayer.presentation.library.playlists.FavPlaylistFragment
-import com.example.playlistmakerfirstproject.audioplayer.presentation.library.tracks.FavTracksFragment
+import com.example.playlistmakerfirstproject.audioplayer.presentation.library.tracks.FavTracksFragmentViewModel
 import com.example.playlistmakerfirstproject.databinding.FragmentLibraryBinding
 import com.google.android.material.tabs.TabLayoutMediator
 

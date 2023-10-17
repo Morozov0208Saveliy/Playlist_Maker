@@ -36,7 +36,7 @@ class TrackAdapter(
             artistName.text = track.artistName
             trackTime.text =
                 SimpleDateFormat("mm:ss", Locale.getDefault()).format(track.trackTimeMillis.toInt())
-            Glide.with(itemView).load(track.artUrl100).transform(RoundedCorners(cornerRadius))
+            Glide.with(itemView).load(track.artworkUrl100).transform(RoundedCorners(cornerRadius))
                 .placeholder(R.drawable.placeholder).into(artWork)
             itemView.setOnClickListener {
                 onItemClickListener?.onItemClick(track)

@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.playlistmakerfirstproject.audioplayer.presentation.library.playlists.FavPlaylistFragment
-import com.example.playlistmakerfirstproject.audioplayer.presentation.library.tracks.FavTracksFragment
+
 
 class ViewPageLibraryAdapter(
     fragmentManager: FragmentManager, lifecycle: Lifecycle,
