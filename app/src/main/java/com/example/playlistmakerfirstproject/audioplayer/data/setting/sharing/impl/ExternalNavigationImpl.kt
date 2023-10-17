@@ -25,8 +25,16 @@ class ExternalNavigationImpl(private val context: Context) : ExternalNavigator {
         supportIntent.data = Uri.parse("mailto:")
         supportIntent.putExtra(Intent.EXTRA_EMAIL, emailToSupport.email)
         supportIntent.putExtra(Intent.EXTRA_SUBJECT, emailToSupport.subject)
-        supportIntent.putExtra(Intent.EXTRA_TEXT,emailToSupport.text)
+        supportIntent.putExtra(Intent.EXTRA_TEXT, emailToSupport.text)
         context.startActivity(supportIntent)
     }
+
+    override fun shareTracks(text: String) {
+        val shareIntent = Intent(Intent.ACTION_SEND).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        shareIntent.putExtra(Intent.EXTRA_TEXT, text)
+        shareIntent.type = "text/plain"
+        context.startActivity(shareIntent)
+    }
+
 
 }

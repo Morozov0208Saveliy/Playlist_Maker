@@ -3,7 +3,6 @@ package com.example.playlistmakerfirstproject.audioplayer.data.network
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import com.example.playlistmakerfirstproject.audioplayer.data.ERROR_NO_CONNECTION_TO_INTERNET
 import com.example.playlistmakerfirstproject.audioplayer.data.NetworkClient
 import com.example.playlistmakerfirstproject.audioplayer.data.dto.Response
 import com.example.playlistmakerfirstproject.audioplayer.data.dto.TrackSearchRequest

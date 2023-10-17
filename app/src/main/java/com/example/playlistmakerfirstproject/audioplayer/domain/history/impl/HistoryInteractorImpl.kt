@@ -1,7 +1,7 @@
 package com.example.playlistmakerfirstproject.audioplayer.domain.history.impl
 
 import com.example.playlistmakerfirstproject.audioplayer.data.history.HistoryRepository
-import com.example.playlistmakerfirstproject.audioplayer.domain.db.FavouriteRepository
+import com.example.playlistmakerfirstproject.audioplayer.domain.favourite.FavouriteRepository
 import com.example.playlistmakerfirstproject.audioplayer.domain.history.HistoryInteractor
 import com.example.playlistmakerfirstproject.audioplayer.domain.models.Track
 import com.google.gson.Gson

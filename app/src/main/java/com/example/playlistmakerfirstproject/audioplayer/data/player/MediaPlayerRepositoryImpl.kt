@@ -2,7 +2,7 @@ package com.example.playlistmakerfirstproject.audioplayer.data.player
 
 import android.media.MediaPlayer
 import com.example.playlistmakerfirstproject.audioplayer.data.db.AppDatabase
-import com.example.playlistmakerfirstproject.audioplayer.data.db.TrackConvertor
+import com.example.playlistmakerfirstproject.audioplayer.data.db.convertors.TrackConvertor
 import com.example.playlistmakerfirstproject.audioplayer.domain.models.State
 import com.example.playlistmakerfirstproject.audioplayer.domain.models.Track
 import com.example.playlistmakerfirstproject.audioplayer.domain.player.MediaPlayerRepository

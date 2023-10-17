@@ -1,8 +1,6 @@
 package com.example.playlistmakerfirstproject.audioplayer.presentation.search
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -20,7 +18,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SearchFragment : Fragment(), TrackAdapter.Listener {
+class SearchFragment : Fragment(), TrackAdapter.OnItemClickListener,
+    TrackAdapter.OnItemLongClickListener {
 
     private lateinit var binding: FragmentSearchBinding
     private val searchTrackViewModel: SearchViewModel by viewModel()
@@ -108,12 +107,16 @@ class SearchFragment : Fragment(), TrackAdapter.Listener {
 
 
     // добавление трека в историю по клику и открыте в аудиоплеере
-    override fun onClick(track: Track) {
+    override fun onItemClick(track: Track) {
         if (clickDebounce()) {
             searchTrackViewModel.addNewTrackToHistory(track)
             searchTrackViewModel.getHistory()
             searchTrackViewModel.openTrackAudioPlayer(track)
         }
+    }
+
+    override fun onItemLongClick(track: Track): Boolean {
+        return true
     }
 
     // контроль нажатий на трек (не быстрее чем 1 сек)
@@ -198,7 +201,8 @@ class SearchFragment : Fragment(), TrackAdapter.Listener {
 
     fun showContent(tracks: List<Track>) {
         binding.apply {
-            rcTrackList.adapter = TrackAdapter(ArrayList(tracks), this@SearchFragment)
+            rcTrackList.adapter =
+                TrackAdapter(ArrayList(tracks), this@SearchFragment, this@SearchFragment)
             rcTrackList.visibility = View.VISIBLE
             imagePlaceholder.visibility = View.GONE
             textPlaceholder.visibility = View.GONE
@@ -211,7 +215,8 @@ class SearchFragment : Fragment(), TrackAdapter.Listener {
 
     fun showHistoryUI(updatedHistory: List<Track>) {
         binding.apply {
-            rcTrackList.adapter = TrackAdapter(ArrayList(updatedHistory), this@SearchFragment)
+            rcTrackList.adapter =
+                TrackAdapter(ArrayList(updatedHistory), this@SearchFragment, this@SearchFragment)
             rcTrackList.visibility = View.VISIBLE
             imagePlaceholder.visibility = View.GONE
             textPlaceholder.visibility = View.GONE

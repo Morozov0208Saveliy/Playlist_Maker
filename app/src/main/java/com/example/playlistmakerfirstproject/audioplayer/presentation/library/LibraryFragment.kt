@@ -4,9 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.playlistmakerfirstproject.R
+import com.example.playlistmakerfirstproject.audioplayer.presentation.library.playlists.FavPlaylistFragment
+import com.example.playlistmakerfirstproject.audioplayer.presentation.library.tracks.FavTracksFragment
 import com.example.playlistmakerfirstproject.databinding.FragmentLibraryBinding
 import com.google.android.material.tabs.TabLayoutMediator
 

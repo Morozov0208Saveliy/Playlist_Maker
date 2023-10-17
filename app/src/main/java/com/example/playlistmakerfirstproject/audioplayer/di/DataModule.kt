@@ -25,11 +25,13 @@ const val SHARED_PREFS_SEARCH_HISTORY = "search_history"
 val dataModule = module {
 
     single {
-        Room.databaseBuilder(androidContext(), AppDatabase::class.java, "database.db")
-            .addMigrations(AppDatabase.MIGRATION_1_2)
-            .allowMainThreadQueries()
+        Room.databaseBuilder(androidContext(), AppDatabase::class.java, "playlist_app_database")
+            .addMigrations(AppDatabase.MIGRATION_4_5)
             .build()
     }
+    single { get<AppDatabase>().trackDao() }
+    single { get<AppDatabase>().playlistDao() }
+    single { get<AppDatabase>().trackInPlaylistDao() }
 
     single<Itunes> {
         Retrofit.Builder()

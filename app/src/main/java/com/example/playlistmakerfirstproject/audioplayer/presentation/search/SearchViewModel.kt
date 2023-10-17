@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.playlistmakerfirstproject.audioplayer.domain.api.TrackInteractor
 import com.example.playlistmakerfirstproject.audioplayer.domain.history.HistoryInteractor
-import com.example.playlistmakerfirstproject.audioplayer.domain.m_navigation.InternalNavigationInteractor
+import com.example.playlistmakerfirstproject.audioplayer.presentation.m_navigation.InternalNavigationInteractor
 import com.example.playlistmakerfirstproject.audioplayer.domain.models.Track
 import com.example.playlistmakerfirstproject.audioplayer.presentation.ui.TracksState
 import kotlinx.coroutines.Job
