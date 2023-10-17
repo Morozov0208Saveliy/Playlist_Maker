@@ -1,6 +1,6 @@
 package com.example.playlistmakerfirstproject.audioplayer.data.setting.settings
 
-import com.example.playlistmakerfirstproject.audioplayer.presentation.ui.settings.model.ThemeSettings
+import com.example.playlistmakerfirstproject.audioplayer.domain.setting.settings.model.ThemeSettings
 
 interface SettingsRepository {
 

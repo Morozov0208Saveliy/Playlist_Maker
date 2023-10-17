@@ -7,15 +7,17 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.playlistmakerfirstproject.audioplayer.presentation.library.playlists.FavPlaylistFragment
 import com.example.playlistmakerfirstproject.audioplayer.presentation.library.tracks.FavTracksFragment
 
-class ViewPageLibraryAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle,
-                             private val list: List<Fragment>) : FragmentStateAdapter(fragmentManager, lifecycle) {
+class ViewPageLibraryAdapter(
+    fragmentManager: FragmentManager, lifecycle: Lifecycle,
+    private val list: List<Fragment>
+) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
     override fun getItemCount(): Int {
         return list.size
     }
 
     override fun createFragment(position: Int): Fragment {
-        return when(position) {
+        return when (position) {
             0 -> FavTracksFragment.newInstance()
             else -> FavPlaylistFragment.newInstance()
         }

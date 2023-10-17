@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.playlistmakerfirstproject.audioplayer.domain.models.Playlist
 import com.example.playlistmakerfirstproject.audioplayer.domain.models.Track
 import com.example.playlistmakerfirstproject.audioplayer.domain.playlists.PlaylistInteractor
-import com.example.playlistmakerfirstproject.audioplayer.domain.setting.sharing.SharingInteractor
+import com.example.playlistmakerfirstproject.audioplayer.domain.setting.SharingInteractor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -19,8 +19,6 @@ class PlaylistDetailsFragmentViewModel(
     private val _playlistDetails = MutableLiveData<Playlist>()
     val playlistDetails: LiveData<Playlist> get() = _playlistDetails
 
-//    private val _tracksLiveData = MutableLiveData<TracksInPlaylistState>()
-//    val tracksLiveData: LiveData<TracksInPlaylistState> get() = _tracksLiveData
 
     private val _tracksLiveData = MutableLiveData<List<Track>?>()
     val tracksLiveData: LiveData<List<Track>?> get() = _tracksLiveData
@@ -66,15 +64,13 @@ class PlaylistDetailsFragmentViewModel(
         _tracksLiveData.postValue(tracks)
     }
 
-
     suspend fun deleteTrackFromPlaylist(track: Track, playlist: Playlist) {
         val idTrackToDelete = track.trackId
         var listOfIdsInPlaylist = playlist.idOfTracks?.toMutableList()
         listOfIdsInPlaylist?.remove(track.trackId)
         playlist.idOfTracks = listOfIdsInPlaylist?.reversed()
-        if (playlist.numberOfTracks != null) {
-            playlist.numberOfTracks = playlist.numberOfTracks!! - 1
-        }
+        if (playlist.numberOfTracks !=null) {
+            playlist.numberOfTracks = playlist.numberOfTracks!! - 1 }
         _playlistDetails.postValue(playlist)
 
         playlistInteractor.deleteTrackFromPlaylist(

@@ -11,7 +11,7 @@ import com.example.playlistmakerfirstproject.audioplayer.domain.models.Track
 import com.example.playlistmakerfirstproject.audioplayer.presentation.search.SearchFragment
 import com.example.playlistmakerfirstproject.audioplayer.presentation.search.SearchViewModel
 import com.example.playlistmakerfirstproject.audioplayer.presentation.search.TrackAdapter
-import com.example.playlistmakerfirstproject.audioplayer.presentation.ui.FavoriteState
+import com.example.playlistmakerfirstproject.audioplayer.ui.FavoriteState
 import com.example.playlistmakerfirstproject.databinding.FragmentFavTracksBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -24,6 +24,7 @@ class FavTracksFragment : Fragment(), TrackAdapter.OnItemClickListener,
     private val favTracksFragmentViewModel: FavTracksFragmentViewModel by viewModel()
     private lateinit var binding: FragmentFavTracksBinding
     private var isClickAllowed = true
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,6 +35,7 @@ class FavTracksFragment : Fragment(), TrackAdapter.OnItemClickListener,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.rcTrackList.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         favTracksFragmentViewModel.fillData()
@@ -65,6 +67,7 @@ class FavTracksFragment : Fragment(), TrackAdapter.OnItemClickListener,
         binding.rcTrackList.visibility = View.GONE
         binding.imageNoFavTracks.visibility = View.VISIBLE
         binding.textPlaceholder.visibility = View.VISIBLE
+
         binding.textPlaceholder.text = message
     }
 
@@ -77,6 +80,7 @@ class FavTracksFragment : Fragment(), TrackAdapter.OnItemClickListener,
             TrackAdapter(ArrayList(tracks), this@FavTracksFragment, this@FavTracksFragment)
 
     }
+
 
     companion object {
         @JvmStatic

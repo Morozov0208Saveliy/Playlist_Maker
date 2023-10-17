@@ -6,6 +6,7 @@ import com.example.playlistmakerfirstproject.audioplayer.domain.models.Track
 import kotlinx.coroutines.flow.Flow
 
 interface PlaylistInteractor {
+
     fun saveImageFromUri(uri: Uri, picturesDirectoryPath: String): String
 
     fun getTracksOnlyFromPlaylist(listOfId: List<Int>): Flow<List<Track>?>

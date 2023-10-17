@@ -1,5 +1,7 @@
 package com.example.playlistmakerfirstproject.audioplayer.domain.history.impl
 
+
+
 import com.example.playlistmakerfirstproject.audioplayer.data.history.HistoryRepository
 import com.example.playlistmakerfirstproject.audioplayer.domain.favourite.FavouriteRepository
 import com.example.playlistmakerfirstproject.audioplayer.domain.history.HistoryInteractor
@@ -7,14 +9,17 @@ import com.example.playlistmakerfirstproject.audioplayer.domain.models.Track
 import com.google.gson.Gson
 import com.google.gson.internal.LinkedTreeMap
 
-
 const val MAX_NUMBER_OF_TRACK = 10
 const val INDEX_OF_OLDEST_TRACK = 9
 const val INDEX_FOR_NEW_TRACK = 0
+
+
 class HistoryInteractorImpl (
     private val historyRepository: HistoryRepository,
     private val favouriteRepository: FavouriteRepository
 ) : HistoryInteractor {
+
+
     override fun getHistoryString(): String {
         var historyString = historyRepository.getHistoryString()
         return if (historyString !=null) {
@@ -23,6 +28,7 @@ class HistoryInteractorImpl (
             ""
         }
     }
+
     override fun getHistoryList() : ArrayList<Track> {
         if (getHistoryString().isNotEmpty()) {
             var a = createTrackListFromJson(getHistoryString())
@@ -31,7 +37,12 @@ class HistoryInteractorImpl (
         else {
             return arrayListOf<Track>()
         }
+
     }
+
+
+
+
     override fun addTrackToHistory(track: Track) {
         var currentHistoryString = getHistoryString()
         if (currentHistoryString.isNotEmpty()) {
@@ -48,10 +59,14 @@ class HistoryInteractorImpl (
                 if (currentHistoryArrayList.size >= MAX_NUMBER_OF_TRACK) {
                     currentHistoryArrayList.removeAt(INDEX_OF_OLDEST_TRACK)
                     currentHistoryArrayList.add(INDEX_FOR_NEW_TRACK, track)
+
                 } else {
                     currentHistoryArrayList.add(INDEX_FOR_NEW_TRACK, track)
+
                 }
+
                 updateHistory(currentHistoryArrayList)
+
             } }
         else {
             var currentHistoryArrayList: ArrayList<Track> = arrayListOf() // создаем пустой список истории
@@ -59,41 +74,55 @@ class HistoryInteractorImpl (
             updateHistory(currentHistoryArrayList)
         }
     }
+
     override fun updateHistory(updatedHistory: ArrayList<Track>) {
         val updatedHistoryJson = createJsonFromTrackList(updatedHistory)
         historyRepository.updateTrackHistory(updatedHistoryJson)
     }
+
+
     override fun clearHistory() {
         historyRepository.clearHistory()
     }
+
+
     fun createTrackListFromJson(json: String): ArrayList<Track> {
-        var a = Gson().fromJson(json, ArrayList<LinkedTreeMap<String, Any>>()::class.java)
-        var b = ArrayList<Track>()
-        a.forEach { aa ->
-            var g:Double =  aa.get("trackTimeMillis") as Double
-            var g2:Double =  aa.get("trackId") as Double
+        val a = Gson().fromJson(json, ArrayList<LinkedTreeMap<String, Any>>()::class.java)
+        val b = ArrayList<Track>()
+
+        a?.forEach { aa ->
+            val g: Double = aa["trackTimeMillis"] as? Double ?: 0.0
+            val g2: Double = aa["trackId"] as? Double ?: 0.0
+
             b.add(
                 Track(
-                    aa.get("trackName") as String,
-                    aa.get("artistName") as String,
+                    aa["trackName"] as? String ?: "",
+                    aa["artistName"] as? String ?: "",
                     g.toInt(),
-                    aa.get("artworkUrl100") as String,
+                    aa["artworkUrl100"] as? String ?: "",
                     g2.toInt(),
-                    aa.get("collectionName") as String,
-                    aa.get("releaseDate") as String,
-                    aa.get("primaryGenreName") as String,
-                    aa.get("country") as String,
-                    aa.get("previewUrl") as String
+                    aa["collectionName"] as? String ?: "",
+                    aa["releaseDate"] as? String ?: "",
+                    aa["primaryGenreName"] as? String ?: "",
+                    aa["country"] as? String ?: "",
+                    aa["previewUrl"] as? String ?: ""
                 )
             )
         }
+
         return b
     }
+
+
+
     fun createTrackList1FromJson(json: String): Array<Track> {
         return Gson().fromJson(json, Array<Track>::class.java)
     }
+
     fun createJsonFromTrackList(trackList: ArrayList<Track>): String {
         return Gson().toJson(trackList)
     }
+
 }
+
 

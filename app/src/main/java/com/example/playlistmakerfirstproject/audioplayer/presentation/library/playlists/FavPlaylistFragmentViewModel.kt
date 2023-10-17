@@ -6,13 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.playlistmakerfirstproject.audioplayer.domain.models.Playlist
 import com.example.playlistmakerfirstproject.audioplayer.domain.playlists.PlaylistInteractor
-import com.example.playlistmakerfirstproject.audioplayer.presentation.ui.PlaylistsState
+import com.example.playlistmakerfirstproject.audioplayer.ui.PlaylistsState
 import kotlinx.coroutines.launch
 
 class FavPlaylistFragmentViewModel(
     private val playlistInteractor: PlaylistInteractor,
 
-    ): ViewModel() {
+    ) : ViewModel() {
 
     private val stateLiveData = MutableLiveData<PlaylistsState>()
     fun observeState(): LiveData<PlaylistsState> = stateLiveData

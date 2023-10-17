@@ -6,5 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface TrackRepository {
     fun search(expression: String): Flow<Resource<List<Track>>>
-    fun getFavIndicators() : Flow<List<Int>>
+
+    fun getFavIndicators(): Flow<List<Int>>
 }

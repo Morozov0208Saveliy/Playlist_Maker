@@ -1,5 +1,6 @@
 package com.example.playlistmakerfirstproject.audioplayer.data.playlists.dao
 
+import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -8,6 +9,7 @@ import androidx.room.Update
 import com.example.playlistmakerfirstproject.audioplayer.data.playlists.entity.PlaylistEntity
 import com.example.playlistmakerfirstproject.audioplayer.data.playlists.entity.TrackInPlaylistsEntity
 
+@Dao
 interface PlaylistDao {
 
     @Insert(entity = PlaylistEntity::class, onConflict = OnConflictStrategy.REPLACE)
@@ -55,4 +57,6 @@ interface PlaylistDao {
 """
     )
     suspend fun addTrackToPlaylist(playlistId: Int, trackId: String)
+
+
 }

@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.map
 
 class TrackInteractorImpl(private val repository: TrackRepository) : TrackInteractor {
 
+
     override fun search(expression: String): Flow<Pair<List<Track>?, String?>> {
         return repository.search(expression).map { result ->
             when (result) {
@@ -31,4 +32,6 @@ class TrackInteractorImpl(private val repository: TrackRepository) : TrackIntera
     override fun getFavIndicators(): Flow<List<Int>> {
         return repository.getFavIndicators()
     }
+
+
 }

@@ -24,6 +24,7 @@ const val SHARED_PREFS_SEARCH_HISTORY = "search_history"
 
 val dataModule = module {
 
+
     single {
         Room.databaseBuilder(androidContext(), AppDatabase::class.java, "playlist_app_database")
             .addMigrations(AppDatabase.MIGRATION_4_5)
@@ -42,12 +43,12 @@ val dataModule = module {
 
     }
 
-    factory (named(SHARED_PREFS_SEARCH_HISTORY)){
+    factory(named(SHARED_PREFS_SEARCH_HISTORY)) {
         androidContext()
             .getSharedPreferences(SHARED_PREFS_SEARCH_HISTORY, Context.MODE_PRIVATE)
     }
 
-    factory (named(SHARED_PREFS_DARK_MODE)){
+    factory(named(SHARED_PREFS_DARK_MODE)) {
         androidContext()
             .getSharedPreferences(SHARED_PREFS_DARK_MODE, Context.MODE_PRIVATE)
     }
@@ -55,7 +56,7 @@ val dataModule = module {
 
 
     single<HistoryRepository> {
-        HistoryRepositoryImpl(get(),get())
+        HistoryRepositoryImpl(get(), get())
     }
 
     single<NetworkClient> {

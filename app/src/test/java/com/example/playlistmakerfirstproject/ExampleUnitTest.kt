@@ -1,4 +1,4 @@
-package com.example.playlistmakerfirstproject
+package com.example.playlistmaker
 
 import org.junit.Test
 

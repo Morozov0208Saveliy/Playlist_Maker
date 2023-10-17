@@ -1,20 +1,14 @@
 package com.example.playlistmakerfirstproject.audioplayer.presentation.settings
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.playlistmakerfirstproject.audioplayer.presentation.ui.settings.SettingsInteractor
-import com.example.playlistmakerfirstproject.audioplayer.presentation.ui.settings.model.ThemeSettings
-import com.example.playlistmakerfirstproject.audioplayer.domain.setting.sharing.SharingInteractor
+import com.example.playlistmakerfirstproject.audioplayer.domain.setting.SharingInteractor
+import com.example.playlistmakerfirstproject.audioplayer.domain.setting.settings.SettingsInteractor
+import com.example.playlistmakerfirstproject.audioplayer.domain.setting.settings.model.ThemeSettings
 
 class SettingViewModel(private val settingsInteractor: SettingsInteractor,
-                       private val sharingInteractor:SharingInteractor
+                       private val sharingInteractor: SharingInteractor
 ) : ViewModel() {
 
     fun isDarkModeOnStart(): Boolean {

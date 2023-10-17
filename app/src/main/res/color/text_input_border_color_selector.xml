@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Цвет обводки для пустого поля -->
     <item android:color="#AEAFB4" android:state_empty="true" />

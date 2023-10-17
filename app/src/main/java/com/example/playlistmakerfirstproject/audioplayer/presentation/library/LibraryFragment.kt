@@ -20,9 +20,7 @@ class LibraryFragment : Fragment() {
 
     private lateinit var fragListTitles: List<String>
     private lateinit var binding: FragmentLibraryBinding
-
     private lateinit var tabMediator: TabLayoutMediator
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,21 +41,17 @@ class LibraryFragment : Fragment() {
         binding.viewPagerLibrary.adapter = ViewPageLibraryAdapter(
             childFragmentManager,
             lifecycle,
-            fragList)
+            fragList
+        )
 
         tabMediator = TabLayoutMediator(binding.tabLayout, binding.viewPagerLibrary) { tab, pos ->
             tab.text = fragListTitles[pos]
         }
         tabMediator.attach()
-
-
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         tabMediator.detach()
     }
-
-
 }
-

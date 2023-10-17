@@ -12,6 +12,7 @@ interface MediaPlayerRepository {
     fun pause()
 
     fun switchPlayerState(onStateChangedTo: (s: State) -> Unit)
+
     suspend fun saveTrackToFav(track: Track)
 
     suspend fun deleteTrackFromFav(track: Track)

@@ -8,13 +8,13 @@ import androidx.lifecycle.viewModelScope
 import com.example.playlistmakerfirstproject.R
 import com.example.playlistmakerfirstproject.audioplayer.domain.favourite.FavouriteInteractor
 import com.example.playlistmakerfirstproject.audioplayer.domain.models.Track
-import com.example.playlistmakerfirstproject.audioplayer.presentation.ui.FavoriteState
+import com.example.playlistmakerfirstproject.audioplayer.ui.FavoriteState
 import kotlinx.coroutines.launch
 
 
 class FavTracksFragmentViewModel(
     private val context: Context,
-    private val favouriteInteractor: FavouriteInteractor.FavouriteInteractor,
+    private val favouriteInteractor: FavouriteInteractor,
 ) : ViewModel() {
 
     private val stateLiveData = MutableLiveData<FavoriteState>()

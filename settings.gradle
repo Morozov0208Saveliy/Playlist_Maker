@@ -1,16 +1,17 @@
 pluginManagement {
     repositories {
-        gradlePluginPortal()
-        google()
+        google() // Add the Google repository
         mavenCentral()
+        gradlePluginPortal()
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google()
+        google() // Add the Google repository
         mavenCentral()
     }
 }
-rootProject.name = "Playlist Maker First Project"
+rootProject.name = "Playlist Maker"
 include ':app'

@@ -4,14 +4,14 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.search.SearchActivity">
+    android:layout_width="match_parent"
+    tools:context=".audioplayer.presentation.search.SearchFragment">
 
 
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
 
         <TextView
             style="@style/HeadText"
@@ -20,27 +20,27 @@
     </FrameLayout>
 
     <FrameLayout
+        android:background="@drawable/backgroud_edit_text"
         android:id="@+id/container"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="64dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/backgroud_edit_text"
+        android:layout_width="match_parent"
 
         >
 
         <EditText
-            android:id="@+id/inputEditText"
             style="@style/EditTextBar"
-            android:layout_width="match_parent"
             android:autofillHints=""
             android:background="@drawable/backgroud_edit_text"
             android:drawableStart="@drawable/ic_search_small"
             android:ellipsize="end"
             android:hint="@string/input_hint"
+            android:id="@+id/inputEditText"
             android:imeOptions="actionDone"
             android:inputType="text"
+            android:layout_width="match_parent"
             android:maxLines="1"
             android:paddingEnd="27dp"
             android:singleLine="true"
@@ -48,8 +48,8 @@
             tools:text="апыпарыапрпрыпрыпреерооофаваррреяя" />
 
         <ImageView
-            android:id="@+id/clearIcon"
             style="@style/ic_clear"
+            android:id="@+id/clearIcon"
             android:src="@drawable/ic_clear_search"
             android:visibility="gone" />
 
@@ -59,34 +59,34 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
-        android:layout_gravity="center"
         android:indeterminateTint="#3772E7"
+        android:layout_gravity="center"
+        android:layout_height="44dp"
+        android:layout_width="44dp"
         android:visibility="gone" />
 
 
     <ScrollView
-        android:layout_width="match_parent"
+        android:fillViewport="true"
         android:layout_height="match_parent"
         android:layout_marginTop="124dp"
-        android:fillViewport="true">
+        android:layout_width="match_parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_width="match_parent"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textSearchHistory"
                     style="@style/history_headline"
-                    android:layout_marginTop="8dp"
                     android:gravity="center_horizontal"
+                    android:id="@+id/textSearchHistory"
+                    android:layout_marginTop="8dp"
                     android:text="@string/you_searched"
                     android:visibility="visible"
                     app:layout_constraintStart_toEndOf="parent"
@@ -96,9 +96,9 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcTrackList"
-                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_width="match_parent"
                     android:visibility="visible"
                     app:layout_constraintEnd_toStartOf="parent"
                     app:layout_constraintStart_toEndOf="parent"
@@ -107,10 +107,10 @@
 
 
                 <Button
-                    android:id="@+id/buttonClearHistory"
                     style="@style/button_clear_history"
-                    android:layout_marginTop="24dp"
                     android:gravity="center"
+                    android:id="@+id/buttonClearHistory"
+                    android:layout_marginTop="24dp"
                     android:text="@string/text_clear_history"
                     android:textAllCaps="false"
                     android:visibility="visible"
@@ -123,16 +123,16 @@
     </ScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="192dp"
+        android:layout_width="match_parent"
         tools:ignore="ExtraText">
 
 
         <ImageView
-            android:id="@+id/imagePlaceholder"
             style="@style/plaseholder_image"
             android:gravity="center"
+            android:id="@+id/imagePlaceholder"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -141,11 +141,11 @@
 
 
         <TextView
-            android:id="@+id/textPlaceholder"
             style="@style/placeholder_text"
+            android:gravity="center"
+            android:id="@+id/textPlaceholder"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:gravity="center"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -153,11 +153,11 @@
             tools:text="@string/something_went_wrong" />
 
         <Button
-            android:id="@+id/buttonUpdatePlaceholder"
             style="@style/placeholder_button"
-            android:layout_marginTop="24dp"
             android:clickable="true"
             android:gravity="center"
+            android:id="@+id/buttonUpdatePlaceholder"
+            android:layout_marginTop="24dp"
             android:text="@string/btUpdate"
             android:visibility="invisible"
             app:cornerRadius="54dp"

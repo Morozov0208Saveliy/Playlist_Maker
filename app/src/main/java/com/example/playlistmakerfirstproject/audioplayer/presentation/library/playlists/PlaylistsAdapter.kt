@@ -16,7 +16,10 @@ class PlaylistsAdapter(
     private val playlistsList: MutableList<Playlist>,
     private val listener: Listener
 ) : RecyclerView.Adapter<PlaylistsAdapter.PlaylistHolder>() {
+
     val cornerRadius = context.resources.getDimensionPixelSize(R.dimen.radius_playlist_cover)
+
+
     inner class PlaylistHolder(private val binding: PlaylistViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(playlist: Playlist) {
@@ -27,7 +30,8 @@ class PlaylistsAdapter(
                     R.drawable.placeholder_light
                 }
                 playlistName.text = playlist.name
-                numberOfTracks.text = "${playlist.numberOfTracks.toString()} ${getTrackWordForm(playlist.numberOfTracks?:0)}"
+                numberOfTracks.text =
+                    "${playlist.numberOfTracks.toString()} ${getTrackWordForm(playlist.numberOfTracks ?: 0)}"
                 Glide.with(root.context)
                     .load(playlist.imagePath)
                     // .transform(RoundedCorners(8dp))
@@ -37,22 +41,29 @@ class PlaylistsAdapter(
             }
         }
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaylistHolder {
-        val binding = PlaylistViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            PlaylistViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PlaylistHolder(binding)
     }
+
     override fun getItemCount(): Int = playlistsList.size
+
     override fun onBindViewHolder(holder: PlaylistHolder, position: Int) {
         holder.bind(playlistsList[position])
     }
+
     fun updateData(newPlaylistsList: List<Playlist>) {
         playlistsList.clear()
         playlistsList.addAll(newPlaylistsList)
         notifyDataSetChanged()
     }
+
     interface Listener {
         fun onClick(playlist: Playlist)
     }
+
     fun getTrackWordForm(count: Int): String {
         return when {
             count % 100 in 11..14 -> "треков"
@@ -63,7 +74,8 @@ class PlaylistsAdapter(
     }
 
     fun isNightModeActive(context: Context): Boolean {
-        val defaultNightMode = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        val defaultNightMode =
+            context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         return defaultNightMode == Configuration.UI_MODE_NIGHT_YES
     }
 

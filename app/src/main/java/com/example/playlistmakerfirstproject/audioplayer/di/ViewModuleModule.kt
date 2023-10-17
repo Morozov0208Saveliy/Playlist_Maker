@@ -18,6 +18,7 @@ val viewModelModule = module {
     viewModel {
         AudioPlayerViewModel(get(), get(), get())
     }
+
     viewModel { (activity: AppCompatActivity) ->
         PlaylistCreationViewModel(androidContext(), get())
     }
@@ -37,7 +38,6 @@ val viewModelModule = module {
     viewModel {
         PlaylistDetailsFragmentViewModel(get(), get())
     }
-
 
     viewModel {
         FavTracksFragmentViewModel(androidContext(), get())

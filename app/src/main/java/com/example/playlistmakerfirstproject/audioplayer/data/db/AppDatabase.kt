@@ -4,8 +4,8 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.playlistmakerfirstproject.audioplayer.data.favourites.TrackDao
-import com.example.playlistmakerfirstproject.audioplayer.data.favourites.TrackEntity
+import com.example.playlistmakerfirstproject.audioplayer.data.favourites.dao.TrackDao
+import com.example.playlistmakerfirstproject.audioplayer.data.favourites.entity.TrackEntity
 import com.example.playlistmakerfirstproject.audioplayer.data.playlists.dao.PlaylistDao
 import com.example.playlistmakerfirstproject.audioplayer.data.playlists.dao.TrackInPlaylistDao
 import com.example.playlistmakerfirstproject.audioplayer.data.playlists.entity.PlaylistEntity
@@ -13,7 +13,8 @@ import com.example.playlistmakerfirstproject.audioplayer.data.playlists.entity.T
 
 @Database(
     version = 5,
-    entities = [TrackEntity::class, PlaylistEntity::class, TrackInPlaylistsEntity::class]
+    entities = [TrackEntity::class, PlaylistEntity::class, TrackInPlaylistsEntity::class],
+    exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
 
@@ -23,8 +24,8 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun trackInPlaylistDao(): TrackInPlaylistDao
 
-
     companion object {
+
         val MIGRATION_4_5 = object : Migration(4, 5) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 database.execSQL(

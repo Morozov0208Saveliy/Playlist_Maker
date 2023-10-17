@@ -5,20 +5,21 @@ import com.example.playlistmakerfirstproject.audioplayer.domain.models.Track
 
 class TrackInPlaylistsEntityDbConvertor {
 
-    fun map(track: Track) : TrackInPlaylistsEntity {
+    fun map(track: Track): TrackInPlaylistsEntity {
         return TrackInPlaylistsEntity(
-            track.trackId,
-            track.artworkUrl100,
-            track.trackName,
-            track.artistName,
-            track.collectionName,
-            track.releaseDate,
-            track.primaryGenreName,
-            track.country,
-            track.trackTimeMillis,
-            track.previewUrl
+            id = track.trackId,
+            artworkUrl100 = track.artUrl100,
+            trackName = track.trackName,
+            artistName = track.artistName,
+            collectionName = track.collectionName,
+            releaseDate = track.releaseDate,
+            primaryGenreName = track.primaryGenreName,
+            country = track.country,
+            trackTimeMillis = track.trackTimeMillis,
+            previewUrl = track.previewUrl ?: ""
         )
     }
+
     fun map(track: TrackInPlaylistsEntity): Track {
         return Track(
             track.trackName,

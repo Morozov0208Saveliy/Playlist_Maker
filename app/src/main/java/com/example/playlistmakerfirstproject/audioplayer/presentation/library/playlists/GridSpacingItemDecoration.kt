@@ -12,6 +12,7 @@ class GridSpacingItemDecoration(
     private val horizontalSpacing: Int,
     private val verticalSpacing: Int
 ) : RecyclerView.ItemDecoration() {
+
     override fun getItemOffsets(
         outRect: Rect,
         view: View,

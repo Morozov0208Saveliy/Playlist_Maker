@@ -1,4 +1,4 @@
-package com.example.playlistmakerfirstproject.audioplayer.data.favourites
+package com.example.playlistmakerfirstproject.audioplayer.data.favourites.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

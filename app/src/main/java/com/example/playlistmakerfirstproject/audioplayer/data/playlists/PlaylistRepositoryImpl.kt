@@ -25,6 +25,7 @@ class PlaylistRepositoryImpl(
     private val contentResolver: ContentResolver
 ) : PlaylistRepository {
 
+
     override fun saveImageFromUri(uri: Uri, picturesDirectoryPath: String): String {
         val uniqueID = UUID.randomUUID().toString()
         val file = File(picturesDirectoryPath, "cover_$uniqueID.jpg")

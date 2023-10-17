@@ -6,4 +6,5 @@ interface HistoryRepository {
     fun getHistoryString(): String
     fun clearHistory(): Unit
     suspend fun getFavTracksIdList(): List<Int>
+
 }

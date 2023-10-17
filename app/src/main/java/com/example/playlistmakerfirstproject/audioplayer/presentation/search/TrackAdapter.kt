@@ -1,6 +1,6 @@
 package com.example.playlistmakerfirstproject.audioplayer.presentation.search
 
-import android.icu.text.SimpleDateFormat
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,11 +9,16 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.playlistmakerfirstproject.R
 import com.example.playlistmakerfirstproject.audioplayer.domain.models.Track
-import com.example.playlistmakerfirstproject.audioplayer.presentation.playlistDetails.PlaylistDetailsFragment
 import com.example.playlistmakerfirstproject.databinding.TrackViewBinding
+import java.text.SimpleDateFormat
 import java.util.Locale
 
-class TrackAdapter(var tracks: ArrayList<Track>, var onItemClickListener: SearchFragment, val onItemLongClickListener: PlaylistDetailsFragment): RecyclerView.Adapter<TrackAdapter.TrackHolder>() {
+
+class TrackAdapter(
+    var tracks: ArrayList<Track>,
+    var onItemClickListener: OnItemClickListener,
+    val onItemLongClickListener: OnItemLongClickListener
+) : RecyclerView.Adapter<TrackAdapter.TrackHolder>() {
 
 
     class TrackHolder(item: View) : RecyclerView.ViewHolder(item) {
@@ -22,12 +27,16 @@ class TrackAdapter(var tracks: ArrayList<Track>, var onItemClickListener: Search
         val cornerRadius =
             item.resources.getDimensionPixelSize(R.dimen.radius_art_work)
 
-        fun bind(track: Track, onItemClickListener: SearchFragment, onItemLongClickListener: SearchFragment) = with(binding) {
+        fun bind(
+            track: Track,
+            onItemClickListener: OnItemClickListener,
+            onItemLongClickListener: OnItemLongClickListener
+        ) = with(binding) {
             trackName.text = track.trackName
             artistName.text = track.artistName
             trackTime.text =
                 SimpleDateFormat("mm:ss", Locale.getDefault()).format(track.trackTimeMillis.toInt())
-            Glide.with(itemView).load(track.artworkUrl100).transform(RoundedCorners(cornerRadius))
+            Glide.with(itemView).load(track.artUrl100).transform(RoundedCorners(cornerRadius))
                 .placeholder(R.drawable.placeholder).into(artWork)
             itemView.setOnClickListener {
                 onItemClickListener?.onItemClick(track)
@@ -48,15 +57,16 @@ class TrackAdapter(var tracks: ArrayList<Track>, var onItemClickListener: Search
     }
 
     override fun onBindViewHolder(holder: TrackHolder, position: Int) {
-        holder.bind(tracks[position],onItemClickListener, onItemLongClickListener)
+        holder.bind(tracks[position], onItemClickListener, onItemLongClickListener)
 
     }
+
     interface OnItemClickListener {
         fun onItemClick(track: Track)
-
     }
 
     interface OnItemLongClickListener {
         fun onItemLongClick(track: Track): Boolean
     }
+
 }

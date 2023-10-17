@@ -1,4 +1,4 @@
-package com.example.playlistmakerfirstproject.audioplayer.presentation.ui
+package com.example.playlistmakerfirstproject.audioplayer.ui
 
 import com.example.playlistmakerfirstproject.audioplayer.domain.models.Track
 

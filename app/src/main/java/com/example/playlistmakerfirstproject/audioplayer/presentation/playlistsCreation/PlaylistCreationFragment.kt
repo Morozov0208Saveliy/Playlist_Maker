@@ -35,12 +35,14 @@ import java.io.FileOutputStream
 
 class PlaylistCreationFragment : Fragment() {
 
+
     private val viewModel: PlaylistCreationViewModel by viewModel { parametersOf(requireActivity() as AppCompatActivity) }
-    private var isPhotoSelected = false
     private lateinit var binding: FragmentPlaylistCreationBinding
+    private var isPhotoSelected = false
     private var editablePlaylist: Playlist? = null
     private var navigateBack: Boolean = false
     private var finalUrl: String? = null
+
 
     private val pickMedia =
         registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
@@ -159,6 +161,7 @@ class PlaylistCreationFragment : Fragment() {
 
     }
 
+
     // functions creating new playlist
     private fun handleSelectedImage(uri: Uri) {
         binding.frameForImage.setImageURI(uri)
@@ -169,6 +172,7 @@ class PlaylistCreationFragment : Fragment() {
 
     private fun createNewPlaylist() {
         val playlistName = binding.editTextName.text.toString()
+
         if (isPhotoSelected) {
             lifecycleScope.launch {
                 viewModel.createNewPlaylist(
@@ -250,6 +254,7 @@ class PlaylistCreationFragment : Fragment() {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
+
     // navigation part
     fun navigateBack() {
         if (activity is RootActivity) {
@@ -304,6 +309,7 @@ class PlaylistCreationFragment : Fragment() {
                 if (requireActivity() is AudioPlayerActivity) {
                     backNavigationListenerAudio?.onNavigateBack(true)
                 }
+
             }
             .show()
             .apply {
@@ -311,5 +317,6 @@ class PlaylistCreationFragment : Fragment() {
                 getButton(DialogInterface.BUTTON_NEUTRAL).setTextColor(Color.parseColor("#3772E7"))
             }
     }
+
 
 }

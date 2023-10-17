@@ -9,11 +9,13 @@ import com.example.playlistmakerfirstproject.audioplayer.data.dto.TrackSearchReq
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class RetrofitNetworkClient(private val imdbService: Itunes,
-                            private val context: Context)  : NetworkClient {
+class RetrofitNetworkClient(
+    private val imdbService: Itunes,
+    private val context: Context
+) : NetworkClient {
 
     override suspend fun getTracksFromItunes(dto: Any): Response {
-        if (!isConnected()){
+        if (!isConnected()) {
             return Response().apply { resultCode = ERROR_NO_CONNECTION_TO_INTERNET }
         }
         if (dto !is TrackSearchRequest) {
@@ -31,8 +33,10 @@ class RetrofitNetworkClient(private val imdbService: Itunes,
 
     private fun isConnected(): Boolean {
         val connectivityManager = context.getSystemService(
-            Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+            Context.CONNECTIVITY_SERVICE
+        ) as ConnectivityManager
+        val capabilities =
+            connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
         if (capabilities != null) {
             when {
                 capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> return true

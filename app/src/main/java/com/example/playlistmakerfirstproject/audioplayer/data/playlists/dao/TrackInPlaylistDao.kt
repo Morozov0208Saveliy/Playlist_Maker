@@ -22,4 +22,5 @@ interface TrackInPlaylistDao {
     @Query("DELETE FROM tracks_in_playlists WHERE track_id = :id")
     suspend fun deleteTrackByIdFromListOfTracksInPlaylists(id: Int)
 
+
 }

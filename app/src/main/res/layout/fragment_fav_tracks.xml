@@ -1,36 +1,36 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 
     <ScrollView
-        android:layout_width="match_parent"
+        android:fillViewport="true"
         android:layout_height="match_parent"
         android:layout_marginTop="16dp"
-        android:fillViewport="true">
+        android:layout_width="match_parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
 
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcTrackList"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_width="match_parent"
                 android:visibility="visible" />
 
         </LinearLayout>
     </ScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
 
         <ImageView
-            android:id="@+id/imageNoFavTracks"
             style="@style/plaseholder_image"
+            android:id="@+id/imageNoFavTracks"
             android:layout_marginTop="106dp"
             android:src="@drawable/nothing_found"
             app:layout_constraintEnd_toEndOf="parent"
@@ -38,11 +38,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textPlaceholder"
             style="@style/placeholder_text"
+            android:gravity="center"
+            android:id="@+id/textPlaceholder"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:gravity="center"
             android:text="@string/noFavTracksFound"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

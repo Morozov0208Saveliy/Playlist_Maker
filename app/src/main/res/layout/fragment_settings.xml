@@ -1,69 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rcTrackList"
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    tools:context="com.example.playlistmakerfirstproject.audioplayer.presentation.settings.SettingsFragment"
 
-    <ImageView
-        android:id="@+id/artWork"
-        android:layout_width="@dimen/art_work_width"
-        android:layout_height="@dimen/art_work_height"
-        android:layout_marginStart="@dimen/art_work_marginStart"
-        android:layout_marginTop="@dimen/art_work_marginTop"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/rounded_playlist_cover"
-        android:scaleType="fitCenter" />
+    >
 
-    <LinearLayout
-        android:layout_width="0dp"
+    <FrameLayout
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_marginStart="10dp"
+        android:layout_width="match_parent">
 
         <TextView
-            android:id="@+id/trackName"
-            style="@style/track_name"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            tools:text="Song #1" />
+            style="@style/HeadText"
+            android:layout_marginLeft="16dp"
+            android:text="@string/settings" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <FrameLayout
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="1dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="80dp"
+            android:layout_width="match_parent">
 
             <TextView
-                android:id="@+id/artistName"
-                style="@style/artist_time_track"
+                style="@style/SettingsScreenText"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|start"
-                android:layout_weight="1"
-                tools:text="The Beatles" />
+
+                android:text="@string/night_theme" />
+
+            <Switch
+                style="@style/SettingsSwitchIcons"
+                android:id="@+id/theme"
+                android:layout_centerHorizontal="true"
+                android:layout_height="61dp"
+                android:layout_width="wrap_content" />
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:id="@+id/share"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="141dp"
+            android:layout_width="match_parent">
+
+            <TextView
+                style="@style/SettingsScreenText"
+                android:text="@string/share" />
 
             <ImageView
-                style="@style/ellipse_devider"
-                android:src="@drawable/ic_ellipse" />
+                style="@style/SettingsScreenIcons"
+                android:layout_marginEnd="16dp"
+                android:layout_width="18dp"
+                android:src="@drawable/share" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/support"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="202dp"
+            android:layout_width="match_parent">
 
             <TextView
-                android:id="@+id/trackTime"
-                style="@style/artist_time_track"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_weight="0"
-                tools:text="2:34" />
-        </LinearLayout>
-    </LinearLayout>
+                style="@style/SettingsScreenText"
+                android:text="@string/support" />
 
-    <ImageView
-        style="@style/SettingsScreenIcons"
-        android:layout_width="8dp"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="20dp"
-        android:src="@drawable/arrow_2" />
-</LinearLayout>
+            <ImageView
+                style="@style/SettingsScreenIcons"
+                android:layout_marginEnd="14dp"
+                android:layout_width="20dp"
+                android:src="@drawable/support" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/agreement"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="263dp"
+            android:layout_width="match_parent">
+
+            <TextView
+                style="@style/SettingsScreenText"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:text="@string/agreement" />
+
+            <ImageView
+                style="@style/SettingsScreenIcons"
+                android:layout_height="61dp"
+                android:layout_marginEnd="20dp"
+                android:layout_width="8dp"
+                android:src="@drawable/arrow_2" />
+        </FrameLayout>
+    </FrameLayout>
+</FrameLayout>

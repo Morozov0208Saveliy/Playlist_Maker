@@ -1,7 +1,8 @@
 package com.example.playlistmakerfirstproject.audioplayer.di
 
+import android.content.Context
 import com.example.playlistmakerfirstproject.audioplayer.data.db.convertors.PlaylistDbConvertor
-import com.example.playlistmakerfirstproject.audioplayer.data.db.convertors.TrackConvertor
+import com.example.playlistmakerfirstproject.audioplayer.data.db.convertors.TrackDbConvertor
 import com.example.playlistmakerfirstproject.audioplayer.data.network.TrackRepositoryImpl
 import com.example.playlistmakerfirstproject.audioplayer.data.db.convertors.TrackInPlaylistsEntityDbConvertor
 import com.example.playlistmakerfirstproject.audioplayer.data.favourites.FavouriteRepositoryImpl
@@ -24,22 +25,25 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val repositoryModule = module {
+
     single<FavouriteRepository> {
         FavouriteRepositoryImpl(get(), get())
     }
+
     single<PlaylistRepository> {
-        PlaylistRepositoryImpl(get(), get(), get(),get())
+        PlaylistRepositoryImpl(get(), get(), get(), get())
     }
 
-    factory { TrackConvertor() }
+    factory { TrackDbConvertor() }
 
     factory { PlaylistDbConvertor() }
 
+    single { get<Context>().contentResolver }
+
     factory { TrackInPlaylistsEntityDbConvertor() }
 
-
     single<TrackRepository> {
-        TrackRepositoryImpl(get(),get())
+        TrackRepositoryImpl(get(), get())
     }
 
     single<InternalNavigationRepository> {
@@ -47,7 +51,7 @@ val repositoryModule = module {
     }
 
     single<MediaPlayerRepository> {
-        MediaPlayerRepositoryImpl(get(),get())
+        MediaPlayerRepositoryImpl(get(), get())
     }
 
     single<ExternalNavigator> {
@@ -59,7 +63,7 @@ val repositoryModule = module {
     }
 
     single<HistoryRepository> {
-        HistoryRepositoryImpl(get(named(SHARED_PREFS_SEARCH_HISTORY)),get())
+        HistoryRepositoryImpl(get(named(SHARED_PREFS_SEARCH_HISTORY)), get())
     }
 
 }

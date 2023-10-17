@@ -20,7 +20,6 @@ class PlaylistInteractorImpl(
         return playlistRepository.getTracksOnlyFromPlaylist(listOfId)
     }
 
-
     override fun getAllFavouritePlaylists(): Flow<List<Playlist>> {
         return playlistRepository.getAllFavouritePlaylists()
     }
@@ -28,7 +27,6 @@ class PlaylistInteractorImpl(
     override suspend fun getPlaylistsById(id: Int): Playlist {
         return playlistRepository.getPlaylistsById(id)
     }
-
 
     override suspend fun createNewPlaylist(playlist: Playlist) {
         playlistRepository.createNewPlaylist(playlist)

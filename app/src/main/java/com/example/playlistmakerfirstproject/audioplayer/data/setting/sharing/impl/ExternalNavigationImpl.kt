@@ -6,6 +6,7 @@ import android.net.Uri
 import com.example.playlistmakerfirstproject.audioplayer.data.setting.sharing.ExternalNavigator
 import com.example.playlistmakerfirstproject.audioplayer.domain.setting.sharing.model.EmailData
 
+
 class ExternalNavigationImpl(private val context: Context) : ExternalNavigator {
     override fun shareLink(link: String) {
         val shareIntent = Intent(Intent.ACTION_SEND).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -35,6 +36,5 @@ class ExternalNavigationImpl(private val context: Context) : ExternalNavigator {
         shareIntent.type = "text/plain"
         context.startActivity(shareIntent)
     }
-
 
 }
