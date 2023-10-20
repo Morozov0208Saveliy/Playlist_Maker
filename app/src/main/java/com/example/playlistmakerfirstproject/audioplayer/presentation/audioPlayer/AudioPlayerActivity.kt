@@ -45,7 +45,7 @@ class AudioPlayerActivity (
         setContentView(binding.root)
 
         track = intent.getSerializableExtra(TRACK_TO_OPEN) as Track
-        val trackInfo = track.toTrackInfo(track)
+        val trackInfo = track.toTrackInfo()
         val url = track.previewUrl // url превью 30 сек.
 
         setupViewModelObservers()

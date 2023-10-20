@@ -10,38 +10,33 @@ data class Track(
     val artistName: String,
     val trackTimeMillis: Int,
     val artworkUrl100: String,
-    val trackId:Int,
-    val collectionName:String,
+    val trackId: Int,
+    val collectionName: String,
     val releaseDate: String,
-    val primaryGenreName:String,
-    val country:String,
+    val primaryGenreName: String,
+    val country: String,
     val previewUrl: String,
     var isFavorite: Boolean = false
-
 ): Serializable {
 
-
-
-    fun toTrackInfo(track:Track) = TrackInfo(
-        trackName = track.trackName,
-        artistName = track.artistName,
-        trackTime = SimpleDateFormat("mm:ss", Locale.getDefault()).format(track.trackTimeMillis),
-        artworkUrl100 = track.artworkUrl100.replaceAfterLast('/', "512x512bb.jpg"),
-        trackId = track.trackId,
-        collectionName = track.collectionName,
-        releaseDate = track.getFormattedYear(track),
-        primaryGenreName = track.primaryGenreName,
-        country = track.country,
-        previewUrl = track.previewUrl,
-        isFavorite=track.isFavorite
-
+    fun toTrackInfo() = TrackInfo(
+        trackName = this.trackName,
+        artistName = this.artistName,
+        trackTime = SimpleDateFormat("mm:ss", Locale.getDefault()).format(this.trackTimeMillis.toLong()),
+        artworkUrl100 = this.artworkUrl100.replaceAfterLast('/', "512x512bb.jpg"),
+        trackId = this.trackId,
+        collectionName = this.collectionName,
+        releaseDate = getFormattedYear(),
+        primaryGenreName = this.primaryGenreName,
+        country = this.country,
+        previewUrl = this.previewUrl,
+        isFavorite = this.isFavorite
     )
 
-    private fun getFormattedYear(track: Track): String {
+    private fun getFormattedYear(): String {
         val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
         val calendar: Calendar = Calendar.getInstance()
-        calendar.setTime(format.parse(track.releaseDate))
+        calendar.time = format.parse(this.releaseDate)!!
         return calendar.get(Calendar.YEAR).toString()
     }
-
 }

@@ -5,7 +5,7 @@
     android:background="#E6E8EB"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    tools:context="com.example.playlistmakerfirstproject.audioplayer.presentation.settings.SettingsFragment">
+    tools:context=".audioplayer.presentation.settings.SettingsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:background="#E6E8EB"
@@ -47,7 +47,7 @@
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/image_playlist_cover"
-            tools:text="Best songs 2021 Best songs 2021Best songs 2021Best songs 2021" />
+            tools:text="Best songs " />
 
         <TextView
             android:ellipsize="marquee"
@@ -75,7 +75,7 @@
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/playlist_details"
-            tools:text="300 минут" />
+            tools:text="... минут" />
 
         <ImageView
             android:id="@+id/divider"
@@ -97,7 +97,7 @@
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@id/divider"
             app:layout_constraintTop_toBottomOf="@id/playlist_details"
-            tools:text="98 треков" />
+            tools:text="... треков" />
 
         <ImageView
             android:id="@+id/icon_share"
@@ -209,7 +209,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="14dp"
                     android:layout_width="wrap_content"
-                    tools:text="Best Songs 2021" />
+                    tools:text="Best Songs" />
 
                 <TextView
                     style="@style/artist_time_track"
@@ -217,7 +217,7 @@
                     android:layout_gravity="bottom|start"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="1dp"
-                    tools:text="89 треков" />
+                    tools:text="... треков" />
 
             </LinearLayout>
         </LinearLayout>

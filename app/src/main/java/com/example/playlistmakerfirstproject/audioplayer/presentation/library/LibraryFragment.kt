@@ -20,7 +20,9 @@ class LibraryFragment : Fragment() {
 
     private lateinit var fragListTitles: List<String>
     private lateinit var binding: FragmentLibraryBinding
+
     private lateinit var tabMediator: TabLayoutMediator
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,10 +50,14 @@ class LibraryFragment : Fragment() {
             tab.text = fragListTitles[pos]
         }
         tabMediator.attach()
+
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         tabMediator.detach()
     }
+
+
 }
