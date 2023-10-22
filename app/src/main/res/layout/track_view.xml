@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rcTrackList"
@@ -29,7 +28,7 @@
             android:id="@+id/trackName"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            tools:text="Song #1" />
+            tools:text="ahngohaohsgoho" />
 
         <LinearLayout
             android:layout_height="wrap_content"
@@ -44,7 +43,7 @@
                 android:layout_gravity="bottom|start"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                tools:text="The Beatles" />
+                tools:text="asfghohaosg" />
 
             <ImageView
                 style="@style/ellipse_devider"
