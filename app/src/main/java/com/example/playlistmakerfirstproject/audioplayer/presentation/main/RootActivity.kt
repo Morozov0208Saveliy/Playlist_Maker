@@ -26,17 +26,21 @@ class RootActivity : AppCompatActivity(), BackNavigationListenerRoot {
 
         binding.bottomNavigationView.setupWithNavController(navController)
 
+
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.playlistDetailsFragment, R.id.playlistFragment -> hideBottomNavigation()
+                R.id.playlistDetailsFragment -> hideBottomNavigation()
+                R.id.playlistFragment -> hideBottomNavigation()
                 else -> showBottomNavigation()
             }
         }
     }
 
+
     private fun showBottomNavigation() {
         binding.bottomNavigationView.visibility = android.view.View.VISIBLE
         binding.devider.visibility = android.view.View.VISIBLE
+
     }
 
     private fun hideBottomNavigation() {
@@ -44,13 +48,15 @@ class RootActivity : AppCompatActivity(), BackNavigationListenerRoot {
         binding.devider.visibility = android.view.View.GONE
     }
 
+
+    // navigation functions
     override fun onBackPressed() {
         onNavigateBack(false)
+
     }
 
     private fun backCheckFragment() {
-        val currentNavHostFragment =
-            supportFragmentManager.findFragmentById(R.id.container_view)
+        val currentNavHostFragment = supportFragmentManager.findFragmentById(R.id.container_view)
         if (currentNavHostFragment is NavHostFragment) {
             val childFragmentManager = currentNavHostFragment.childFragmentManager
             val currentFragment = childFragmentManager.primaryNavigationFragment
@@ -73,4 +79,6 @@ class RootActivity : AppCompatActivity(), BackNavigationListenerRoot {
         if (isEmpty) super.onBackPressed()
         else backCheckFragment()
     }
+
+
 }
