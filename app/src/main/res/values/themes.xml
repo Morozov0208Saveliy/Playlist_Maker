@@ -16,6 +16,7 @@
         <!-- Customize your theme here. -->
         <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
         <item name="android:textCursorDrawable">@drawable/cursos_edit_text</item>
+        <item name="android:navigationBarColor">@color/white</item>
 
 
     </style>

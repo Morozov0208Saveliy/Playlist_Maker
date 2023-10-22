@@ -29,6 +29,7 @@
         app:tabIndicatorAnimationMode="elastic"
         app:tabIndicatorColor="?attr/colorOnSecondary"
         app:tabIndicatorFullWidth="false"
+        style="@style/tab"
         app:tabInlineLabel="true"
         app:tabSelectedTextColor="?attr/colorOnSecondary"
         app:tabTextAppearance="@style/TextTabLayout"
