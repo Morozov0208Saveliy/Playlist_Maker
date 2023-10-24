@@ -7,8 +7,9 @@ import com.example.playlistmakerfirstproject.audioplayer.domain.setting.SharingI
 import com.example.playlistmakerfirstproject.audioplayer.domain.setting.settings.SettingsInteractor
 import com.example.playlistmakerfirstproject.audioplayer.domain.setting.settings.model.ThemeSettings
 
-class SettingViewModel(private val settingsInteractor: SettingsInteractor,
-                       private val sharingInteractor: SharingInteractor
+class SettingViewModel(
+    private val settingsInteractor: SettingsInteractor,
+    private val sharingInteractor: SharingInteractor
 ) : ViewModel() {
 
     fun isDarkModeOnStart(): Boolean {

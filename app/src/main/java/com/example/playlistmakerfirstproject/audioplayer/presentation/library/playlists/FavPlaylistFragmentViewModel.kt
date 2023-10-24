@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 class FavPlaylistFragmentViewModel(
     private val playlistInteractor: PlaylistInteractor,
 
-    ): ViewModel() {
+    ) : ViewModel() {
 
     private val stateLiveData = MutableLiveData<PlaylistsState>()
     fun observeState(): LiveData<PlaylistsState> = stateLiveData

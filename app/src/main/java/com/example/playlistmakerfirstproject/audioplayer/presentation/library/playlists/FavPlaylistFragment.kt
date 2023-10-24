@@ -28,13 +28,14 @@ class FavPlaylistFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentFavPlaylistsBinding.inflate(inflater, container, false)
-        adapter = PlaylistsAdapter(requireContext(), mutableListOf(), object : PlaylistsAdapter.Listener {
-            override fun onClick(playlist: Playlist) {
-                val bundle = Bundle()
-                bundle.putSerializable("playlist", playlist)
-                findNavController().navigate(R.id.playlistDetailsFragment, bundle)
-            }
-        })
+        adapter =
+            PlaylistsAdapter(requireContext(), mutableListOf(), object : PlaylistsAdapter.Listener {
+                override fun onClick(playlist: Playlist) {
+                    val bundle = Bundle()
+                    bundle.putSerializable("playlist", playlist)
+                    findNavController().navigate(R.id.playlistDetailsFragment, bundle)
+                }
+            })
         binding.recyclerViewPlaylists.adapter = adapter
 
         binding.buttonCreateNewPlaylist.setOnClickListener {
@@ -47,7 +48,7 @@ class FavPlaylistFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val layoutManager = GridLayoutManager(context,2)
+        val layoutManager = GridLayoutManager(context, 2)
         binding.recyclerViewPlaylists.layoutManager = layoutManager
         //   binding.recyclerViewPlaylists.addItemDecoration(GridSpacingItemDecoration(2, 8,16))
 
@@ -80,10 +81,8 @@ class FavPlaylistFragment : Fragment() {
     }
 
 
-
-
     private fun navigateToNewFragment() {
-        findNavController().navigate(R.id.playlistFragment,null)
+        findNavController().navigate(R.id.playlistFragment, null)
     }
 
     override fun onDestroyView() {

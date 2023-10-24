@@ -112,9 +112,10 @@ class SearchFragment : Fragment(), TrackAdapter.OnItemClickListener,
         }
 
         binding.buttonUpdatePlaceholder.setOnClickListener {
-            val searchTextRequest = binding.inputEditText.text.toString()
+            var searchTextRequest = binding.inputEditText.text.toString()
             searchTrackViewModel.searchAction(searchTextRequest)
         }
+
     }
 
     private fun init() {

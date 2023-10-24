@@ -13,8 +13,7 @@ import com.example.playlistmakerfirstproject.audioplayer.data.playlists.entity.T
 
 @Database(
     version = 5,
-    entities = [TrackEntity::class, PlaylistEntity::class, TrackInPlaylistsEntity::class],
-    exportSchema = false
+    entities = [TrackEntity::class, PlaylistEntity::class, TrackInPlaylistsEntity::class]
 )
 abstract class AppDatabase : RoomDatabase() {
 
@@ -23,6 +22,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun playlistDao(): PlaylistDao
 
     abstract fun trackInPlaylistDao(): TrackInPlaylistDao
+
 
     companion object {
 
@@ -45,5 +45,7 @@ abstract class AppDatabase : RoomDatabase() {
                 database.execSQL("DROP TABLE favourite_playlists")
             }
         }
+
+
     }
 }

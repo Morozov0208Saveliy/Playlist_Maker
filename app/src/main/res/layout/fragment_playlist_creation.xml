@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    tools:context=".audioplayer.presentation.settings.SettingsFragment">
+    tools:context="com.example.playlistmakerfirstproject.audioplayer.presentation.settings.SettingsFragment">
 
     <LinearLayout
         android:id="@+id/header_field"

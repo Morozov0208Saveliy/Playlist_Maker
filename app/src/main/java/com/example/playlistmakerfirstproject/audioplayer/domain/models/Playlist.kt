@@ -8,6 +8,6 @@ data class Playlist(
     var details: String?,
     var imagePath: String?,
     var idOfTracks: List<Int>?,
-    var numberOfTracks: Int? =  idOfTracks?.size ?:0
+    var numberOfTracks: Int? = idOfTracks?.size ?: 0
 
-): Serializable
+) : Serializable

@@ -1,7 +1,6 @@
 package com.example.playlistmakerfirstproject.audioplayer.domain.history.impl
 
 
-
 import com.example.playlistmakerfirstproject.audioplayer.data.history.HistoryRepository
 import com.example.playlistmakerfirstproject.audioplayer.domain.favourite.FavouriteRepository
 import com.example.playlistmakerfirstproject.audioplayer.domain.history.HistoryInteractor
@@ -14,7 +13,7 @@ const val INDEX_OF_OLDEST_TRACK = 9
 const val INDEX_FOR_NEW_TRACK = 0
 
 
-class HistoryInteractorImpl (
+class HistoryInteractorImpl(
     private val historyRepository: HistoryRepository,
     private val favouriteRepository: FavouriteRepository
 ) : HistoryInteractor {
@@ -22,35 +21,33 @@ class HistoryInteractorImpl (
 
     override fun getHistoryString(): String {
         var historyString = historyRepository.getHistoryString()
-        return if (historyString !=null) {
+        return if (historyString != null) {
             historyString
         } else {
             ""
         }
     }
 
-    override fun getHistoryList() : ArrayList<Track> {
+    override fun getHistoryList(): ArrayList<Track> {
         if (getHistoryString().isNotEmpty()) {
             var a = createTrackListFromJson(getHistoryString())
             return a
-        }
-        else {
+        } else {
             return arrayListOf<Track>()
         }
 
     }
 
 
-
-
     override fun addTrackToHistory(track: Track) {
         var currentHistoryString = getHistoryString()
         if (currentHistoryString.isNotEmpty()) {
             var currentHistoryArrayList = currentHistoryString?.let { createTrackListFromJson(it) }
-            var currentHistoryArray = createTrackList1FromJson(currentHistoryString) // создаем из строки список треков array
-            if (currentHistoryArrayList?.size !== 0) { // если история поиска не пустая
+            var currentHistoryArray =
+                createTrackList1FromJson(currentHistoryString)
+            if (currentHistoryArrayList?.size !== 0) {
                 // проверка на дубликат
-                for (i in 0..(currentHistoryArrayList!!.size - 1)){
+                for (i in 0..(currentHistoryArrayList!!.size - 1)) {
                     if (track.trackId == currentHistoryArray[i].trackId) {
                         currentHistoryArrayList.removeAt(i)
                         break
@@ -67,9 +64,10 @@ class HistoryInteractorImpl (
 
                 updateHistory(currentHistoryArrayList)
 
-            } }
-        else {
-            var currentHistoryArrayList: ArrayList<Track> = arrayListOf() // создаем пустой список истории
+            }
+        } else {
+            var currentHistoryArrayList: ArrayList<Track> =
+                arrayListOf()
             currentHistoryArrayList.add(INDEX_FOR_NEW_TRACK, track)
             updateHistory(currentHistoryArrayList)
         }
@@ -87,33 +85,30 @@ class HistoryInteractorImpl (
 
 
     fun createTrackListFromJson(json: String): ArrayList<Track> {
-        val a = Gson().fromJson(json, ArrayList<LinkedTreeMap<String, Any>>()::class.java)
-        val b = ArrayList<Track>()
-
-        a?.forEach { aa ->
-            val g: Double = aa["trackTimeMillis"] as? Double ?: 0.0
-            val g2: Double = aa["trackId"] as? Double ?: 0.0
+        var a = Gson().fromJson(json, ArrayList<LinkedTreeMap<String, Any>>()::class.java)
+        var b = ArrayList<Track>()
+        a.forEach { aa ->
+            var g: Double = aa.get("trackTimeMillis") as Double
+            var g2: Double = aa.get("trackId") as Double
 
             b.add(
                 Track(
-                    aa["trackName"] as? String ?: "",
-                    aa["artistName"] as? String ?: "",
+                    aa.get("trackName") as String,
+                    aa.get("artistName") as String,
                     g.toInt(),
-                    aa["artworkUrl100"] as? String ?: "",
+                    aa.get("artworkUrl100") as String,
                     g2.toInt(),
-                    aa["collectionName"] as? String ?: "",
-                    aa["releaseDate"] as? String ?: "",
-                    aa["primaryGenreName"] as? String ?: "",
-                    aa["country"] as? String ?: "",
-                    aa["previewUrl"] as? String ?: ""
+                    aa.get("collectionName") as String,
+                    aa.get("releaseDate") as String,
+                    aa.get("primaryGenreName") as String,
+                    aa.get("country") as String,
+                    aa.get("previewUrl") as String
                 )
             )
         }
 
         return b
     }
-
-
 
     fun createTrackList1FromJson(json: String): Array<Track> {
         return Gson().fromJson(json, Array<Track>::class.java)

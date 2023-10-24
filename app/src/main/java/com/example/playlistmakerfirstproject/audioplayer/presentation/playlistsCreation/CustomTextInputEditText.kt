@@ -5,7 +5,9 @@ import android.util.AttributeSet
 import com.google.android.material.textfield.TextInputEditText
 
 class CustomTextInputEditText @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = com.google.android.material.R.attr.textInputStyle
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = com.google.android.material.R.attr.textInputStyle
 ) : TextInputEditText(context, attrs, defStyleAttr) {
 
     override fun onCreateDrawableState(extraSpace: Int): IntArray {

@@ -5,7 +5,8 @@ import com.example.playlistmakerfirstproject.audioplayer.domain.setting.settings
 import com.example.playlistmakerfirstproject.audioplayer.domain.setting.settings.model.ThemeSettings
 
 
-class SettingsInteractorImpl(  private val settingRepository: SettingsRepository
+class SettingsInteractorImpl(
+    private val settingRepository: SettingsRepository
 ) : SettingsInteractor {
     override fun getThemeSettings(): ThemeSettings {
         return settingRepository.getThemeSettings()

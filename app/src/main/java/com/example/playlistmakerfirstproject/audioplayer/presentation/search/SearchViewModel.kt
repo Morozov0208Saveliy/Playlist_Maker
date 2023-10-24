@@ -23,7 +23,7 @@ class SearchViewModel(
     private val searchInteractor: TrackInteractor,
     private val historyInteractor: HistoryInteractor,
     private val internalNavigationInteractor: InternalNavigationInteractor
-) : ViewModel(){
+) : ViewModel() {
     companion object {
         private const val SEARCH_DEBOUNCE_DELAY = 2000L
         private const val ERROR_CONNECTION = -1
@@ -54,7 +54,7 @@ class SearchViewModel(
 
     fun onDestroy() {
         handler.removeCallbacks(searchRunnable)
-        lastSearchText=null
+        lastSearchText = null
     }
 
     fun onResume() {
@@ -83,9 +83,10 @@ class SearchViewModel(
         }
     }
 
-    fun getHistory():ArrayList<Track> {
-        return  historyInteractor.getHistoryList()
+    fun getHistory(): ArrayList<Track> {
+        return historyInteractor.getHistoryList()
     }
+
     fun showHistory() {
         searchTrackStatusLiveData.postValue(
             TracksState(
@@ -152,18 +153,20 @@ class SearchViewModel(
             tracks.clear()
             tracks.addAll(foundTracks)
         }
-        when { errorMessage != null -> {
-            searchTrackStatusLiveData.postValue(
-                TracksState(
-                    emptyList(),
-                    false,
-                    ERROR_CONNECTION,
-                    needToUpdate = true,
-                    toShowHistory = false,
-                    history = emptyList(),
+        when {
+            errorMessage != null -> {
+                searchTrackStatusLiveData.postValue(
+                    TracksState(
+                        emptyList(),
+                        false,
+                        ERROR_CONNECTION,
+                        needToUpdate = true,
+                        toShowHistory = false,
+                        history = emptyList(),
+                    )
                 )
-            )
-        }
+            }
+
             tracks.isEmpty() -> {
                 searchTrackStatusLiveData.postValue(
                     TracksState(

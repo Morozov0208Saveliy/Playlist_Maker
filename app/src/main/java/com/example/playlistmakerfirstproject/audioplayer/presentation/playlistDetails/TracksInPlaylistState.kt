@@ -10,7 +10,7 @@ sealed interface TracksInPlaylistState {
 
     data class Content(
         val tracks: List<Track>,
-        val trackDurations : Int
+        val trackDurations: Int
     ) : TracksInPlaylistState
 
 }

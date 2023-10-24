@@ -12,7 +12,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext.startKoin
 import org.koin.java.KoinJavaComponent.getKoin
 
-class App ():Application() {
+class App() : Application() {
 
     override fun onCreate() {
         super.onCreate()

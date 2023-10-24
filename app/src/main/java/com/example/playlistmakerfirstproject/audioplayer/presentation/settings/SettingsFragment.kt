@@ -23,20 +23,22 @@ class SettingsFragment : Fragment() {
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Observe changes to the dark mode setting
+
         viewModel.getModeLiveData().observe(viewLifecycleOwner) { isDarkMode ->
             changeMode(isDarkMode)
         }
 
-        // Respond to theme switch changes
-        binding.theme.setOnCheckedChangeListener { _, isChecked ->
+        binding.theme.setOnCheckedChangeListener { buttonView, isChecked ->
             viewModel.changeMode(isChecked)
         }
 
-        // Handle support, sharing, and legal agreement actions
+
+        // sharing part
+
         binding.support.setOnClickListener {
             viewModel.openSupport(
                 getString(R.string.subject_message_support),
@@ -51,10 +53,13 @@ class SettingsFragment : Fragment() {
         binding.agreement.setOnClickListener {
             viewModel.legalAgreement()
         }
+
+
     }
 
     private fun changeMode(isDarkMode: Boolean) {
-        if (isDarkMode) {
+        if (isDarkMode == true) {
+
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             binding.theme.isChecked = true
         } else {
@@ -62,4 +67,6 @@ class SettingsFragment : Fragment() {
             binding.theme.isChecked = false
         }
     }
+
+
 }

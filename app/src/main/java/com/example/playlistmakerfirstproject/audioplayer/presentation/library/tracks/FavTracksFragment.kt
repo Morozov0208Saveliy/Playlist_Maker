@@ -17,7 +17,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class FavTracksFragment : Fragment(), TrackAdapter.OnItemClickListener , TrackAdapter.OnItemLongClickListener{
+class FavTracksFragment : Fragment(), TrackAdapter.OnItemClickListener,
+    TrackAdapter.OnItemLongClickListener {
 
     private val searchTrackViewModel: SearchViewModel by viewModel()
     private val favTracksFragmentViewModel: FavTracksFragmentViewModel by viewModel()
@@ -75,7 +76,8 @@ class FavTracksFragment : Fragment(), TrackAdapter.OnItemClickListener , TrackAd
         binding.imageNoFavTracks.visibility = View.GONE
         binding.textPlaceholder.visibility = View.GONE
 
-        binding.rcTrackList.adapter = TrackAdapter(ArrayList(tracks), this@FavTracksFragment, this@FavTracksFragment)
+        binding.rcTrackList.adapter =
+            TrackAdapter(ArrayList(tracks), this@FavTracksFragment, this@FavTracksFragment)
 
     }
 

@@ -59,7 +59,6 @@ class PlaylistDetailsFragmentViewModel(
         }
     }
 
-
     private fun processResult(tracks: List<Track>?) {
         _tracksLiveData.postValue(tracks)
     }
@@ -69,8 +68,9 @@ class PlaylistDetailsFragmentViewModel(
         var listOfIdsInPlaylist = playlist.idOfTracks?.toMutableList()
         listOfIdsInPlaylist?.remove(track.trackId)
         playlist.idOfTracks = listOfIdsInPlaylist?.reversed()
-        if (playlist.numberOfTracks !=null) {
-            playlist.numberOfTracks = playlist.numberOfTracks!! - 1 }
+        if (playlist.numberOfTracks != null) {
+            playlist.numberOfTracks = playlist.numberOfTracks!! - 1
+        }
         _playlistDetails.postValue(playlist)
 
         playlistInteractor.deleteTrackFromPlaylist(
