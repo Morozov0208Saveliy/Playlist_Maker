@@ -52,9 +52,9 @@ class PlaylistRepositoryImpl(
                 listOfId.contains(track.id)
             }
 
-            val sortedTracks = filteredTracks.sortedBy { track ->
-                listOfId.indexOf(track.id)
-            }/*.reversed()*/
+            val sortedTracks = filteredTracks.sortedBy {
+                it.timestamp
+            }.reversed()
 
             if (sortedTracks.isEmpty()) {
                 emit(null)
