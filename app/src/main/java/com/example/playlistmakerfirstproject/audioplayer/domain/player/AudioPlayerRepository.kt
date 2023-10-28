@@ -12,6 +12,4 @@ interface AudioPlayerInteractor {
     suspend fun addTrackToFav(track: Track)
 
     suspend fun deleteTrackFromFav(track: Track)
-
-
 }

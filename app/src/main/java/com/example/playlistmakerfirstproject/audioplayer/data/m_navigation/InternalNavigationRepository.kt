@@ -4,6 +4,7 @@ import com.example.playlistmakerfirstproject.audioplayer.domain.models.Track
 
 interface InternalNavigationRepository {
 
+
     fun openTrack(track: Track)
 
 }

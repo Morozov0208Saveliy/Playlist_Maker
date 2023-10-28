@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rcTrackList"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="horizontal">
+
+
+    <ImageView
+        android:background="@drawable/rounded_playlist_cover_small"
+        android:clipToOutline="true"
+        android:id="@+id/playlistCoverImage"
+        android:layout_height="@dimen/art_work_height"
+        android:layout_marginBottom="@dimen/image_margin"
+        android:layout_marginTop="@dimen/image_margin"
+        android:layout_width="@dimen/art_work_width"
+        android:scaleType="centerCrop"
+        android:src="@drawable/library" />
+
+
+    <LinearLayout
+        android:layout_gravity="center_vertical"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/playlist_view_small_name"
+            android:id="@+id/playlistName"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="14dp"
+            android:layout_width="wrap_content" />
+
+        <TextView
+            style="@style/artist_time_track"
+            android:id="@+id/numberOfTracks"
+            android:layout_gravity="bottom|start"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="1dp"
+            android:layout_width="wrap_content" />
+
+    </LinearLayout>
+</LinearLayout>

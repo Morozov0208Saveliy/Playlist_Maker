@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/searchFragment"
         android:enabled="true"
         android:icon="@drawable/search"
-        android:title="@string/search"
-        />
+        android:id="@+id/searchFragment"
+        android:title="@string/search" />
 
     <item
+        android:icon="@drawable/library"
         android:iconTint="@color/buttom_nav_color"
         android:id="@+id/libraryFragment"
-        android:icon="@drawable/library"
-        android:title="@string/library"/>
+        android:title="@string/library" />
 
     <item
-        android:iconTint="@color/buttom_nav_color"
-        android:id="@+id/settingsFragment"
         android:enabled="true"
         android:icon="@drawable/settings"
-        android:title="@string/settings"/>
+        android:iconTint="@color/buttom_nav_color"
+        android:id="@+id/settingsFragment"
+        android:title="@string/settings" />
 
 </menu>

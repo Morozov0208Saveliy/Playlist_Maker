@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.playlistmaker.presentation."
+    tools:context="com.example.playlistmakerfirstproject.audioplayer.presentation.settings.SettingsFragment"
 
     >
 
     <FrameLayout
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp">
+        android:layout_marginStart="10dp"
+        android:layout_width="match_parent">
 
         <TextView
             style="@style/HeadText"
@@ -19,72 +19,77 @@
             android:text="@string/settings" />
 
         <FrameLayout
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
-            >
+            android:layout_width="match_parent">
+
             <TextView
-                android:text="@string/night_theme"
+                style="@style/SettingsScreenText"
                 android:layout_height="wrap_content"
 
-                style="@style/SettingsScreenText" />
+                android:text="@string/night_theme" />
 
             <Switch
-                android:id="@+id/theme"
                 style="@style/SettingsSwitchIcons"
-                android:layout_width="wrap_content"
+                android:id="@+id/theme"
+                android:layout_centerHorizontal="true"
                 android:layout_height="61dp"
-                android:layout_centerHorizontal="true" />
+                android:layout_width="wrap_content" />
         </FrameLayout>
 
 
         <FrameLayout
-            android:layout_width="match_parent"
+            android:id="@+id/share"
             android:layout_height="wrap_content"
             android:layout_marginTop="141dp"
-            android:id="@+id/share" >
+            android:layout_width="match_parent">
+
             <TextView
                 style="@style/SettingsScreenText"
                 android:text="@string/share" />
 
             <ImageView
                 style="@style/SettingsScreenIcons"
-                android:layout_width="18dp"
                 android:layout_marginEnd="16dp"
+                android:layout_width="18dp"
                 android:src="@drawable/share" />
         </FrameLayout>
 
         <FrameLayout
             android:id="@+id/support"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="202dp">
+            android:layout_marginTop="202dp"
+            android:layout_width="match_parent">
+
             <TextView
                 style="@style/SettingsScreenText"
                 android:text="@string/support" />
+
             <ImageView
                 style="@style/SettingsScreenIcons"
+                android:layout_marginEnd="14dp"
                 android:layout_width="20dp"
-                android:src="@drawable/support"
-                android:layout_marginEnd="14dp" />
+                android:src="@drawable/support" />
         </FrameLayout>
+
         <FrameLayout
             android:id="@+id/agreement"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="263dp">
+            android:layout_marginTop="263dp"
+            android:layout_width="match_parent">
 
             <TextView
                 style="@style/SettingsScreenText"
-                android:text="@string/agreement"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:text="@string/agreement" />
 
             <ImageView
                 style="@style/SettingsScreenIcons"
-                android:layout_width="8dp"
+                android:layout_height="61dp"
                 android:layout_marginEnd="20dp"
-                android:src="@drawable/arrow_2"
-                android:layout_height="61dp"/>
+                android:layout_width="8dp"
+                android:src="@drawable/arrow_2" />
         </FrameLayout>
     </FrameLayout>
 </FrameLayout>

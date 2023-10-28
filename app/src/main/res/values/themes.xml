@@ -3,8 +3,10 @@
     <style name="Theme.App" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#AEAFB4</item>
-        <item name="colorPrimaryVariant">@color/setting_head</item>
+        <item name="colorPrimaryVariant">@color/text_grey_color</item>
         <item name="colorOnPrimary">@color/white</item>
+
+
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/white</item>
         <item name="colorSecondaryVariant">@color/ic_day</item>
@@ -12,8 +14,34 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-
+        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
+        <item name="android:textCursorDrawable">@drawable/cursos_edit_text</item>
+        <item name="android:navigationBarColor">@color/white</item>
 
 
     </style>
+
+    <style name="Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationView</item>
+
+    </style>
+
+    <style name="ThemeOverlay.App.BottomNavigationView" parent="">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="itemTextColor">@color/black</item>
+    </style>
+
+    <style name="ThemeOverlay.AppTheme.TextInputEditText.Outlined" parent="">
+        <item name="colorPrimary">#3772E7</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColorHint">#1A1B22</item>
+        <item name="android:background">@null</item>
+        <item name="boxStrokeColor">@color/text_input_outline_color</item>
+        <item name="hintTextColor">#3772E7</item>
+    </style>
+
+
 </resources>

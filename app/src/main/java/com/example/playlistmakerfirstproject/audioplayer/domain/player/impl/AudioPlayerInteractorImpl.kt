@@ -28,6 +28,7 @@ class AudioPlayerInteractorImpl(
         mediaPlayerRepository.switchPlayerState(onStateChangedTo)
 
     }
+
     override suspend fun addTrackToFav(track: Track) {
         mediaPlayerRepository.saveTrackToFav(track)
     }
@@ -35,7 +36,6 @@ class AudioPlayerInteractorImpl(
     override suspend fun deleteTrackFromFav(track: Track) {
         mediaPlayerRepository.deleteTrackFromFav(track)
     }
-
 
 
 }

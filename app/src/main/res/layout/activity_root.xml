@@ -2,16 +2,16 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
     tools:context=".audioplayer.presentation.main.RootActivity">
 
     <androidx.fragment.app.FragmentContainerView
 
         android:id="@+id/container_view"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@id/devider"
 
@@ -21,30 +21,30 @@
         app:navGraph="@navigation/main_navigation_graph" />
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:id="@+id/devider"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/container_view"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
         style="@style/divider_context_nav_bar"
+        android:id="@+id/devider"
         android:layout_height="0.5dp"
-        android:layout_width="match_parent"/>
-
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/container_view" />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
-        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        app:backgroundTint="?android:attr/navigationBarColor"
 
         app:itemIconTint="@color/buttom_nav_color"
         app:itemTextColor="@color/buttom_nav_color"
 
-        app:layout_constraintTop_toBottomOf="@id/devider"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/devider"
 
         app:menu="@menu/bottom_navigation_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,11 +1,11 @@
 package com.example.playlistmakerfirstproject.audioplayer.domain.setting.sharing.impl
 
 import com.example.playlistmakerfirstproject.audioplayer.data.setting.sharing.ExternalNavigator
-import com.example.playlistmakerfirstproject.audioplayer.domain.setting.sharing.SharingInteractor
+import com.example.playlistmakerfirstproject.audioplayer.domain.setting.SharingInteractor
 import com.example.playlistmakerfirstproject.audioplayer.domain.setting.sharing.model.EmailData
 
 const val LINK_TO_SHARE = "https://practicum.yandex.ru/profile/android-developer/"
-const val SENDER_EMAIL = "morozov.savely2015@gmail.com"
+const val SENDER_EMAIL = "yep4yep@gmail.com"
 const val LINK_TERMS = "https://yandex.ru/legal/practicum_offer/"
 class SharingInteractorImpl(
     private val externalNavigator: ExternalNavigator,
@@ -20,6 +20,10 @@ class SharingInteractorImpl(
 
     override fun openSupport(subject:String, text: String) {
         externalNavigator.openEmail(EmailData(SENDER_EMAIL,subject,text))
+    }
+
+    override fun shareTracks(text: String) {
+        externalNavigator.shareTracks(text)
     }
 
     private fun getShareAppLink(): String {
